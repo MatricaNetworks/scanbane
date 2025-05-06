@@ -1,0 +1,199 @@
+1. Phishing Detection
+VirusTotal API
+
+
+Purpose: Detect malicious URLs and files.
+
+
+API: VirusTotal API
+
+
+
+
+
+Google SafeBrowsing API
+
+
+Purpose: Check URLs for malware, phishing, or harmful content.
+
+
+API: SafeBrowsing API
+
+
+
+
+
+Url Haus
+Maltiverse
+Abuse IPDB
+
+2.  📩 SMS/NLP Smishing Detection
+Twilio API
+
+
+Purpose: Parse incoming SMS messages for malicious links.
+
+
+API: Twilio SMS API
+
+
+Google SafeBrowsing (for SMS URL Threat Detection)
+
+
+Purpose: Scan URLs in SMS messages for phishing or malicious content.
+
+
+API: SafeBrowsing API
+
+
+SpamAssassin
+
+
+Purpose: Analyze SMS content for spam-like patterns indicative of smishing.
+
+
+Tool: SpamAssassin
+● FastText NLP 
+● Spamassassin
+● Regex + heuristics
+
+
+
+3. Steganography Detection
+StegExpose
+
+
+Purpose: Analyze images for hidden data or malicious payloads.
+
+
+Tool: StegExpose
+
+
+OpenStego
+
+
+Purpose: Detect and decode hidden data within images.
+
+
+Tool: OpenStego
+
+
+Custom LSB (Least Significant Bit) Algorithm
+
+
+Purpose: Detect hidden messages in image pixel data.
+
+
+Tool: Python (via Pillow library)
+
+
+Create an advanced Custom Lsb programming
+
+4. Malware Detection
+VirusTotal API
+
+
+Purpose: General malware detection for files and URLs.
+
+
+API: VirusTotal API
+
+
+ClamAV
+
+
+Purpose: Open-source antivirus engine for scanning files for malware (Trojans, Worms, etc.).
+
+
+Tool: ClamAV
+
+
+YARA
+
+
+Purpose: Create custom rules to detect patterns related to specific malware types (Trojans, Ransomware, Worms).
+
+
+Tool: YARA
+
+
+Cuckoo Sandbox
+
+
+Purpose: Dynamic analysis of suspicious files in a sandbox environment.
+
+
+Tool: Cuckoo Sandbox
+
+
+Malwarebytes API
+
+
+Purpose: Detect and block malicious files, including Trojans, Worms, and ransomware.
+
+
+API: Malwarebytes API
+Malware Bazaar
+
+Hybrid analysis
+
+
+
+
+5. Botnet and Backdoor Detection
+Zeek (formerly Bro)
+
+
+Purpose: Network monitoring to detect traffic indicative of botnet activity and backdoor communication.
+
+
+Tool: Zeek
+
+
+Snort
+
+
+Purpose: Intrusion detection system (IDS) to detect botnet and backdoor activity based on network traffic.
+
+
+Tool: Snort
+
+
+Suricata
+
+
+Purpose: Another IDS/IPS tool that can detect and block botnet activities.
+
+
+Tool: Suricata
+
+
+
+6. Keyloggers Detection
+OSSEC
+
+
+Purpose: Host-based intrusion detection system (HIDS) for detecting keyloggers and suspicious activities.
+
+
+Tool: OSSEC
+
+
+Rootkit Hunter
+
+
+Purpose: Detect rootkits, including keyloggers and backdoors.
+
+
+Tool: Rootkit Hunter
+
+
+
+7. Ransomware and Crimeware Detection
+Cuckoo Sandbox
+
+
+Purpose: Detect ransomware through dynamic analysis of files.
+
+
+Tool: Cuckoo Sandbox
