@@ -37,6 +37,9 @@ export default function LandingPage() {
             <a href="#pricing" className="text-foreground/80 hover:text-primary transition-colors">
               Pricing
             </a>
+            <a href="#platforms" className="text-foreground/80 hover:text-primary transition-colors">
+              Platforms
+            </a>
             <a href="#about" className="text-foreground/80 hover:text-primary transition-colors">
               About
             </a>
@@ -102,6 +105,13 @@ export default function LandingPage() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
+              </a>
+              <a 
+                href="#platforms" 
+                className="py-2 text-foreground/80 hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Platforms
               </a>
               <a 
                 href="#about" 
@@ -881,6 +891,96 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
+        {/* Download Platforms Section */}
+        <section id="platforms" className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <h2 className="text-3xl font-bold mb-4">Available on All Your Devices</h2>
+              <p className="text-foreground/70">
+                Download ScamBane for your preferred platform and stay protected everywhere
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              {/* Android Card */}
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-green-500/30 group">
+                <div className="text-center mb-4">
+                  <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Smartphone className="h-8 w-8 text-green-500" />
+                  </div>
+                  <h3 className="text-xl font-semibold">Android</h3>
+                  <p className="text-sm text-foreground/70 mt-2">
+                    Download from Google Play Store
+                  </p>
+                </div>
+                <Button 
+                  className="w-full bg-green-500 hover:bg-green-600 transition-colors duration-300" 
+                  onClick={() => window.open('https://play.google.com/store/apps/details?id=com.scambane.app', '_blank')}
+                >
+                  <Download className="h-5 w-5 mr-2" /> Download
+                </Button>
+              </div>
+              
+              {/* iOS Card */}
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-blue-500/30 group">
+                <div className="text-center mb-4">
+                  <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Apple className="h-8 w-8 text-blue-500" />
+                  </div>
+                  <h3 className="text-xl font-semibold">iOS</h3>
+                  <p className="text-sm text-foreground/70 mt-2">
+                    Download from Apple App Store
+                  </p>
+                </div>
+                <Button 
+                  className="w-full bg-blue-500 hover:bg-blue-600 transition-colors duration-300" 
+                  onClick={() => window.open('https://apps.apple.com/app/scambane/id12345678', '_blank')}
+                >
+                  <Download className="h-5 w-5 mr-2" /> Download
+                </Button>
+              </div>
+              
+              {/* Windows Card */}
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/30 group">
+                <div className="text-center mb-4">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Laptop className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold">Windows</h3>
+                  <p className="text-sm text-foreground/70 mt-2">
+                    Download .exe installer
+                  </p>
+                </div>
+                <Button 
+                  className="w-full bg-primary hover:bg-primary/90 transition-colors duration-300" 
+                  onClick={() => window.open('/downloads/scambane-setup.exe', '_blank')}
+                >
+                  <Download className="h-5 w-5 mr-2" /> Download
+                </Button>
+              </div>
+              
+              {/* macOS Card */}
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-secondary/30 group">
+                <div className="text-center mb-4">
+                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Apple className="h-8 w-8 text-secondary" />
+                  </div>
+                  <h3 className="text-xl font-semibold">macOS</h3>
+                  <p className="text-sm text-foreground/70 mt-2">
+                    Download .dmg installer
+                  </p>
+                </div>
+                <Button 
+                  className="w-full bg-secondary hover:bg-secondary/90 transition-colors duration-300" 
+                  onClick={() => window.open('/downloads/scambane-installer.dmg', '_blank')}
+                >
+                  <Download className="h-5 w-5 mr-2" /> Download
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
@@ -906,6 +1006,7 @@ export default function LandingPage() {
                 <li><a href="#features" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Audio Analysis</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
                 <li><a href="#features" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Video Scanning</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
                 <li><a href="#features" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">APK Analysis</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><a href="#platforms" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Download Apps</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
               </ul>
             </div>
             
