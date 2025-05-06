@@ -199,6 +199,24 @@ export default function LandingPage() {
                             </div>
                           </div>
                         </div>
+                        <div className="bg-background/50 rounded-md p-4 flex items-center">
+                          <Music className="h-5 w-5 text-secondary mr-3" />
+                          <div className="flex-1">
+                            <p className="text-sm font-medium">Audio Analysis</p>
+                            <div className="h-2 bg-secondary/10 rounded-full mt-1">
+                              <div className="h-2 bg-secondary rounded-full w-3/5" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bg-background/50 rounded-md p-4 flex items-center">
+                          <Video className="h-5 w-5 text-primary mr-3" />
+                          <div className="flex-1">
+                            <p className="text-sm font-medium">Video Security Scanner</p>
+                            <div className="h-2 bg-primary/10 rounded-full mt-1">
+                              <div className="h-2 bg-primary rounded-full w-2/5" />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -320,9 +338,9 @@ export default function LandingPage() {
                   </div>
                   <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-primary/30" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Submit for Analysis</h3>
+                <h3 className="text-xl font-semibold mb-2">Automatic Interception</h3>
                 <p className="text-foreground/70">
-                  Upload a file, paste a URL, or select an image for scanning through our intuitive interface.
+                  ScamBane intercepts all content—URLs, images, files, audio, and video—before they reach you, providing proactive protection.
                 </p>
               </div>
               
@@ -333,9 +351,9 @@ export default function LandingPage() {
                   </div>
                   <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-primary/30" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Multi-layered Scanning</h3>
+                <h3 className="text-xl font-semibold mb-2">Intelligent Analysis</h3>
                 <p className="text-foreground/70">
-                  Our system analyzes your submission using multiple security APIs and AI-powered detection engines.
+                  Content is analyzed using multi-layered detection including steganography analysis in images, audio, and video files to find hidden threats.
                 </p>
               </div>
               
@@ -343,9 +361,9 @@ export default function LandingPage() {
                 <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4">
                   <span className="text-2xl font-bold text-primary">3</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Comprehensive Results</h3>
+                <h3 className="text-xl font-semibold mb-2">Safe Access & Reporting</h3>
                 <p className="text-foreground/70">
-                  Receive detailed analysis results with clear threat indicators and recommendations for safe browsing.
+                  Safe content is allowed through while dangerous items are blocked. You receive detailed reports on threats detected and actions taken.
                 </p>
               </div>
             </div>
@@ -384,6 +402,10 @@ export default function LandingPage() {
                   <li className="flex items-center">
                     <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
                     <span>Basic threat detection</span>
+                  </li>
+                  <li className="flex items-center opacity-50">
+                    <X className="h-5 w-5 text-destructive mr-2" />
+                    <span>No audio & video scanning</span>
                   </li>
                   <li className="flex items-center opacity-50">
                     <X className="h-5 w-5 text-destructive mr-2" />
@@ -429,6 +451,10 @@ export default function LandingPage() {
                   <li className="flex items-center">
                     <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
                     <span>APK analysis</span>
+                  </li>
+                  <li className="flex items-center">
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <span>Audio & video scanning</span>
                   </li>
                   <li className="flex items-center">
                     <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
@@ -525,6 +551,8 @@ export default function LandingPage() {
                 <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">URL Scanning</a></li>
                 <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">File Analysis</a></li>
                 <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Image Scanning</a></li>
+                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Audio Analysis</a></li>
+                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Video Scanning</a></li>
                 <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">APK Analysis</a></li>
               </ul>
             </div>
