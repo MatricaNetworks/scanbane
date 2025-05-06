@@ -335,16 +335,19 @@ export default function LandingPage() {
               <div className="relative w-full max-w-4xl aspect-[4/3]">
                 {/* Triangle Container */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Triangle SVG with Professional Styling */}
+                  {/* Triangle SVG with Interactive Styling */}
                   <svg viewBox="0 0 800 600" className="w-full h-full">
-                    {/* Glowing Background */}
+                    {/* Enhanced Definitions */}
                     <defs>
+                      {/* Pulsating radial gradient */}
                       <radialGradient id="triadGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                        <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.05" />
+                        <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.08">
+                          <animate attributeName="stop-opacity" values="0.08;0.15;0.08" dur="8s" repeatCount="indefinite" />
+                        </stop>
                         <stop offset="100%" stopColor="transparent" stopOpacity="0" />
                       </radialGradient>
                       
-                      {/* Soft glowing effect around paths */}
+                      {/* Enhanced glow effect */}
                       <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                         <feGaussianBlur stdDeviation="5" result="blur" />
                         <feMerge>
@@ -352,86 +355,204 @@ export default function LandingPage() {
                           <feMergeNode in="SourceGraphic" />
                         </feMerge>
                       </filter>
+                      
+                      {/* Dynamic gradient for the triangle edges */}
+                      <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="var(--color-primary)">
+                          <animate attributeName="stop-color" values="var(--color-primary);var(--color-secondary);#22c55e;var(--color-primary)" dur="12s" repeatCount="indefinite" />
+                        </stop>
+                        <stop offset="50%" stopColor="var(--color-secondary)">
+                          <animate attributeName="stop-color" values="var(--color-secondary);#22c55e;var(--color-primary);var(--color-secondary)" dur="12s" repeatCount="indefinite" />
+                        </stop>
+                        <stop offset="100%" stopColor="#22c55e">
+                          <animate attributeName="stop-color" values="#22c55e;var(--color-primary);var(--color-secondary);#22c55e" dur="12s" repeatCount="indefinite" />
+                        </stop>
+                      </linearGradient>
+                      
+                      {/* Animated inner fill gradient */}
+                      <linearGradient id="inner-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="var(--color-primary)">
+                          <animate attributeName="stop-color" values="var(--color-primary);var(--color-secondary);#22c55e;var(--color-primary)" dur="18s" repeatCount="indefinite" />
+                        </stop>
+                        <stop offset="50%" stopColor="var(--color-secondary)">
+                          <animate attributeName="stop-color" values="var(--color-secondary);#22c55e;var(--color-primary);var(--color-secondary)" dur="18s" repeatCount="indefinite" />
+                        </stop>
+                        <stop offset="100%" stopColor="#22c55e">
+                          <animate attributeName="stop-color" values="#22c55e;var(--color-primary);var(--color-secondary);#22c55e" dur="18s" repeatCount="indefinite" />
+                        </stop>
+                      </linearGradient>
+                      
+                      {/* Particle effect */}
+                      <filter id="particle">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" />
+                        <feDisplacementMap in="SourceGraphic" scale="5" />
+                      </filter>
+                      
+                      {/* Animated pulse for corners */}
+                      <radialGradient id="cornerPulse1" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="var(--color-primary)">
+                          <animate attributeName="stop-opacity" values="0.9;0.4;0.9" dur="3s" repeatCount="indefinite" />
+                        </stop>
+                        <stop offset="100%" stopColor="var(--color-primary)" stopOpacity="0" />
+                      </radialGradient>
+                      
+                      <radialGradient id="cornerPulse2" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="var(--color-secondary)">
+                          <animate attributeName="stop-opacity" values="0.9;0.4;0.9" dur="4s" repeatCount="indefinite" />
+                        </stop>
+                        <stop offset="100%" stopColor="var(--color-secondary)" stopOpacity="0" />
+                      </radialGradient>
+                      
+                      <radialGradient id="cornerPulse3" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="#22c55e">
+                          <animate attributeName="stop-opacity" values="0.9;0.4;0.9" dur="5s" repeatCount="indefinite" />
+                        </stop>
+                        <stop offset="100%" stopColor="#22c55e" stopOpacity="0" />
+                      </radialGradient>
                     </defs>
                     
-                    {/* Background glow */}
-                    <circle cx="400" cy="300" r="250" fill="url(#triadGlow)" />
+                    {/* Animated Background Glow with pulsing effect */}
+                    <circle cx="400" cy="300" r="250" fill="url(#triadGlow)">
+                      <animate attributeName="r" values="250;260;250" dur="10s" repeatCount="indefinite" />
+                    </circle>
                     
-                    {/* Outer Triangle with gradient stroke */}
+                    {/* Animated particles floating in the background */}
+                    <g opacity="0.2" filter="url(#particle)">
+                      <circle cx="350" cy="250" r="4" fill="var(--color-primary)">
+                        <animate attributeName="cy" values="250;240;260;250" dur="20s" repeatCount="indefinite" />
+                        <animate attributeName="cx" values="350;360;340;350" dur="25s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx="450" cy="350" r="3" fill="var(--color-secondary)">
+                        <animate attributeName="cy" values="350;340;360;350" dur="15s" repeatCount="indefinite" />
+                        <animate attributeName="cx" values="450;460;440;450" dur="20s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx="300" cy="350" r="5" fill="#22c55e">
+                        <animate attributeName="cy" values="350;360;340;350" dur="18s" repeatCount="indefinite" />
+                        <animate attributeName="cx" values="300;290;310;300" dur="23s" repeatCount="indefinite" />
+                      </circle>
+                    </g>
+                    
+                    {/* Outer Triangle with animated gradient stroke */}
                     <path 
                       d="M400,100 L650,450 L150,450 Z" 
                       fill="none" 
                       stroke="url(#gradient-stroke)" 
-                      strokeWidth="2" 
+                      strokeWidth="3" 
                       className="text-foreground/50"
                       filter="url(#glow)"
-                    />
+                    >
+                      <animate attributeName="stroke-width" values="3;4;3" dur="10s" repeatCount="indefinite" />
+                    </path>
                     
-                    {/* Gradient for stroke */}
-                    <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="var(--color-primary)" />
-                      <stop offset="50%" stopColor="var(--color-secondary)" />
-                      <stop offset="100%" stopColor="#22c55e" />
-                    </linearGradient>
-                    
-                    {/* Inner Triangle with subtle fill */}
+                    {/* Inner Triangle with subtle animated fill */}
                     <path 
                       d="M400,110 L640,440 L160,440 Z" 
                       fill="url(#inner-gradient)" 
-                      fillOpacity="0.03"
-                    />
-                    
-                    {/* Gradient for inner triangle */}
-                    <linearGradient id="inner-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="var(--color-primary)" />
-                      <stop offset="50%" stopColor="var(--color-secondary)" />
-                      <stop offset="100%" stopColor="#22c55e" />
-                    </linearGradient>
-                    
-                    {/* Connection lines with animated dash array */}
-                    <line 
-                      x1="400" y1="110" x2="400" y2="440" 
-                      stroke="currentColor" 
-                      strokeWidth="1" 
-                      strokeDasharray="4,4" 
-                      className="text-foreground/20" 
+                      fillOpacity="0.05"
                     >
-                      <animate attributeName="stroke-dashoffset" from="0" to="16" dur="30s" repeatCount="indefinite" />
-                    </line>
+                      <animate attributeName="fill-opacity" values="0.05;0.08;0.05" dur="8s" repeatCount="indefinite" />
+                    </path>
                     
-                    <line 
-                      x1="400" y1="110" x2="640" y2="440" 
-                      stroke="currentColor" 
-                      strokeWidth="1" 
-                      strokeDasharray="4,4" 
-                      className="text-foreground/20"
-                    >
-                      <animate attributeName="stroke-dashoffset" from="0" to="16" dur="30s" repeatCount="indefinite" />
-                    </line>
+                    {/* Connection lines with animated dash array and opacity */}
+                    <g>
+                      {/* Center to top line */}
+                      <line 
+                        x1="400" y1="300" x2="400" y2="100" 
+                        stroke="var(--color-primary)" 
+                        strokeWidth="1.5" 
+                        strokeDasharray="5,5" 
+                        strokeOpacity="0.6"
+                      >
+                        <animate attributeName="stroke-dashoffset" from="0" to="20" dur="20s" repeatCount="indefinite" />
+                        <animate attributeName="stroke-opacity" values="0.6;0.9;0.6" dur="10s" repeatCount="indefinite" />
+                      </line>
+                      
+                      {/* Center to bottom-right line */}
+                      <line 
+                        x1="400" y1="300" x2="650" y2="450" 
+                        stroke="var(--color-secondary)" 
+                        strokeWidth="1.5" 
+                        strokeDasharray="5,5"
+                        strokeOpacity="0.6"
+                      >
+                        <animate attributeName="stroke-dashoffset" from="0" to="20" dur="25s" repeatCount="indefinite" />
+                        <animate attributeName="stroke-opacity" values="0.6;0.9;0.6" dur="12s" repeatCount="indefinite" />
+                      </line>
+                      
+                      {/* Center to bottom-left line */}
+                      <line 
+                        x1="400" y1="300" x2="150" y2="450" 
+                        stroke="#22c55e" 
+                        strokeWidth="1.5" 
+                        strokeDasharray="5,5"
+                        strokeOpacity="0.6"
+                      >
+                        <animate attributeName="stroke-dashoffset" from="0" to="20" dur="22s" repeatCount="indefinite" />
+                        <animate attributeName="stroke-opacity" values="0.6;0.9;0.6" dur="15s" repeatCount="indefinite" />
+                      </line>
+                    </g>
                     
-                    <line 
-                      x1="400" y1="110" x2="160" y2="440" 
-                      stroke="currentColor" 
-                      strokeWidth="1" 
-                      strokeDasharray="4,4" 
-                      className="text-foreground/20"
-                    >
-                      <animate attributeName="stroke-dashoffset" from="0" to="16" dur="30s" repeatCount="indefinite" />
-                    </line>
+                    {/* Energy flowing along the triangle edges */}
+                    <g>
+                      {/* Top to bottom-right energy flow */}
+                      <circle r="4" fill="var(--color-primary)" opacity="0.7">
+                        <animateMotion 
+                          path="M400,100 L650,450" 
+                          dur="6s" 
+                          repeatCount="indefinite" 
+                          rotate="auto"
+                        />
+                        <animate attributeName="opacity" values="0;0.7;0" dur="6s" repeatCount="indefinite" />
+                      </circle>
+                      
+                      {/* Bottom-right to bottom-left energy flow */}
+                      <circle r="4" fill="var(--color-secondary)" opacity="0.7">
+                        <animateMotion 
+                          path="M650,450 L150,450" 
+                          dur="8s" 
+                          repeatCount="indefinite" 
+                          rotate="auto"
+                        />
+                        <animate attributeName="opacity" values="0;0.7;0" dur="8s" repeatCount="indefinite" />
+                      </circle>
+                      
+                      {/* Bottom-left to top energy flow */}
+                      <circle r="4" fill="#22c55e" opacity="0.7">
+                        <animateMotion 
+                          path="M150,450 L400,100" 
+                          dur="7s" 
+                          repeatCount="indefinite" 
+                          rotate="auto"
+                        />
+                        <animate attributeName="opacity" values="0;0.7;0" dur="7s" repeatCount="indefinite" />
+                      </circle>
+                    </g>
                     
-                    {/* Small connecting dots at corners */}
-                    <circle cx="400" cy="110" r="6" fill="var(--color-primary)" fillOpacity="0.5" />
-                    <circle cx="640" cy="440" r="6" fill="var(--color-secondary)" fillOpacity="0.5" />
-                    <circle cx="160" cy="440" r="6" fill="#22c55e" fillOpacity="0.5" />
+                    {/* Pulsating corner nodes */}
+                    <circle cx="400" cy="100" r="12" fill="url(#cornerPulse1)">
+                      <animate attributeName="r" values="12;14;12" dur="4s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="650" cy="450" r="12" fill="url(#cornerPulse2)">
+                      <animate attributeName="r" values="12;14;12" dur="4.5s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="150" cy="450" r="12" fill="url(#cornerPulse3)">
+                      <animate attributeName="r" values="12;14;12" dur="5s" repeatCount="indefinite" />
+                    </circle>
+                    
+                    {/* Small inner connecting dots at corners */}
+                    <circle cx="400" cy="100" r="4" fill="var(--color-primary)" fillOpacity="0.8" />
+                    <circle cx="650" cy="450" r="4" fill="var(--color-secondary)" fillOpacity="0.8" />
+                    <circle cx="150" cy="450" r="4" fill="#22c55e" fillOpacity="0.8" />
                   </svg>
                   
-                  {/* Node 1 - Top */}
-                  <div className="absolute top-16 left-1/2 transform -translate-x-1/2 z-10">
+                  {/* Node 1 - Top of Triangle */}
+                  <div className="absolute top-[15%] left-1/2 transform -translate-x-1/2 z-10">
                     <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
-                      <div className="rounded-full bg-gradient-to-br from-primary/30 to-primary/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-primary/40 hover:to-primary/20 shadow-[0_0_15px_rgba(var(--color-primary-rgb),0.3)] border border-primary/20 backdrop-blur-sm">
-                        <Shield className="h-12 w-12 text-primary transition-all duration-300 group-hover:scale-125 drop-shadow-md" />
+                      <div className="rounded-full bg-gradient-to-br from-primary/30 to-primary/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-primary/40 hover:to-primary/20 shadow-[0_0_15px_rgba(var(--color-primary-rgb),0.3)] border border-primary/20 backdrop-blur-sm hover:rotate-12">
+                        <Shield className="h-12 w-12 text-primary transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
                       </div>
-                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20 min-w-[220px] text-center mt-3">
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
+                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary bg-clip-text">Automatic Interception</h3>
                         <p className="text-foreground/70">
                           All content is intercepted before reaching your device for proactive protection
@@ -440,13 +561,14 @@ export default function LandingPage() {
                     </div>
                   </div>
                   
-                  {/* Node 2 - Bottom Left */}
-                  <div className="absolute bottom-16 left-[15%] z-10">
+                  {/* Node 2 - Bottom Left Corner of Triangle */}
+                  <div className="absolute bottom-[15%] left-[15%] z-10">
                     <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
-                      <div className="rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-secondary/40 hover:to-secondary/20 shadow-[0_0_15px_rgba(var(--color-secondary-rgb),0.3)] border border-secondary/20 backdrop-blur-sm">
-                        <ShieldAlert className="h-12 w-12 text-secondary transition-all duration-300 group-hover:scale-125 drop-shadow-md" />
+                      <div className="rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-secondary/40 hover:to-secondary/20 shadow-[0_0_15px_rgba(var(--color-secondary-rgb),0.3)] border border-secondary/20 backdrop-blur-sm hover:rotate-12">
+                        <ShieldAlert className="h-12 w-12 text-secondary transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
                       </div>
-                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-secondary/20 min-w-[220px] text-center mt-3">
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-secondary/20 min-w-[220px] text-center mt-3 relative group-hover:rotate-3">
+                        <div className="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-secondary bg-clip-text">Intelligent Analysis</h3>
                         <p className="text-foreground/70">
                           Multi-layered detection of all threats including advanced steganography detection
@@ -455,13 +577,14 @@ export default function LandingPage() {
                     </div>
                   </div>
                   
-                  {/* Node 3 - Bottom Right */}
-                  <div className="absolute bottom-16 right-[15%] z-10">
+                  {/* Node 3 - Bottom Right Corner of Triangle */}
+                  <div className="absolute bottom-[15%] right-[15%] z-10">
                     <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
-                      <div className="rounded-full bg-gradient-to-br from-green-500/30 to-green-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-green-500/40 hover:to-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.3)] border border-green-500/20 backdrop-blur-sm">
-                        <ShieldCheck className="h-12 w-12 text-green-500 transition-all duration-300 group-hover:scale-125 drop-shadow-md" />
+                      <div className="rounded-full bg-gradient-to-br from-green-500/30 to-green-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-green-500/40 hover:to-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.3)] border border-green-500/20 backdrop-blur-sm hover:-rotate-12">
+                        <ShieldCheck className="h-12 w-12 text-green-500 transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
                       </div>
-                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-green-500/20 min-w-[220px] text-center mt-3">
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-green-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
+                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-green-500 bg-clip-text">Safe Access & Reporting</h3>
                         <p className="text-foreground/70">
                           Safe content is allowed through while dangerous items are blocked with detailed reports
@@ -470,13 +593,39 @@ export default function LandingPage() {
                     </div>
                   </div>
                   
-                  {/* Center Text */}
+                  {/* Enhanced Interactive Center Text */}
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                    <div className="bg-background/60 backdrop-blur-md rounded-full p-3 shadow-[0_0_20px_rgba(var(--shadow-rgb),0.2)] border border-border/50 flex items-center justify-center w-32 h-32 transition-all duration-500 hover:scale-110 hover:shadow-[0_0_30px_rgba(var(--shadow-rgb),0.3)]">
-                      <div>
-                        <div className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-green-500 bg-clip-text text-transparent text-center">ScamBane</div>
-                        <div className="text-lg font-medium text-foreground/70 text-center">Security Triad</div>
+                    <div className="relative">
+                      {/* Outer ring with rotating gradient effect */}
+                      <div className="absolute inset-0 rounded-full border-4 border-transparent p-1 animate-[spin_30s_linear_infinite]">
+                        <div className="w-full h-full rounded-full bg-gradient-to-r from-primary via-secondary to-green-500 opacity-30"></div>
                       </div>
+                      
+                      {/* Inner glowing core */}
+                      <div className="bg-background/60 backdrop-blur-xl rounded-full p-4 shadow-[0_0_30px_rgba(var(--shadow-rgb),0.25)] border border-border/60 flex items-center justify-center w-36 h-36 transition-all duration-500 hover:scale-110 hover:shadow-[0_0_40px_rgba(var(--shadow-rgb),0.4)] group relative overflow-hidden">
+                        {/* Animated highlight */}
+                        <div className="absolute top-0 left-0 w-full h-full rounded-full bg-gradient-to-br from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        
+                        {/* Animated Rays */}
+                        <div className="absolute inset-0 opacity-20 overflow-hidden rounded-full">
+                          <div className="w-[200%] h-[200%] absolute -top-1/2 -left-1/2 animate-[spin_15s_linear_infinite]">
+                            <div className="w-full h-2 bg-primary absolute top-1/2 left-0 blur-sm"></div>
+                            <div className="w-full h-2 bg-secondary absolute top-1/2 left-0 rotate-60 blur-sm"></div>
+                            <div className="w-full h-2 bg-green-500 absolute top-1/2 left-0 rotate-120 blur-sm"></div>
+                          </div>
+                        </div>
+                        
+                        {/* Text Content */}
+                        <div className="relative z-10 text-center transform transition-all duration-300 group-hover:scale-105">
+                          <div className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-green-500 bg-clip-text text-transparent animate-[pulse_5s_ease-in-out_infinite]">ScamBane</div>
+                          <div className="mt-1 text-lg font-medium text-foreground/90">Security Triad</div>
+                          <div className="mt-1 text-xs font-light text-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Comprehensive Protection</div>
+                        </div>
+                      </div>
+                      
+                      {/* Pulsing outer highlight rings */}
+                      <div className="absolute -inset-4 rounded-full border border-primary/30 opacity-60 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+                      <div className="absolute -inset-6 rounded-full border border-secondary/20 opacity-0 group-hover:opacity-60 animate-[ping_4s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
                     </div>
                   </div>
                 </div>
