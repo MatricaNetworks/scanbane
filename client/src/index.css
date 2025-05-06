@@ -100,3 +100,61 @@
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Progress bar animations */
+@keyframes scanner-progress {
+  0% {
+    transform: translateX(-10%);
+    background-position: 0% 50%;
+  }
+  50% {
+    transform: translateX(100%);
+    background-position: 100% 50%;
+  }
+  100% {
+    transform: translateX(-10%); 
+    background-position: 0% 50%;
+  }
+}
+
+.scanner-progress-red {
+  animation: scanner-progress 4s infinite;
+  background-size: 200% 100%;
+  border-radius: inherit;
+  background-image: linear-gradient(90deg, rgba(239, 68, 68, 0.7) 0%, rgb(239, 68, 68) 50%, rgba(239, 68, 68, 0.7) 100%);
+}
+
+.scanner-progress-green {
+  animation: scanner-progress 4.5s infinite;
+  background-size: 200% 100%;
+  border-radius: inherit;
+  background-image: linear-gradient(90deg, rgba(34, 197, 94, 0.7) 0%, rgb(34, 197, 94) 50%, rgba(34, 197, 94, 0.7) 100%);
+}
+
+.scanner-progress-blue {
+  animation: scanner-progress 5s infinite;
+  background-size: 200% 100%;
+  border-radius: inherit;
+  background-image: linear-gradient(90deg, rgba(59, 130, 246, 0.7) 0%, rgb(59, 130, 246) 50%, rgba(59, 130, 246, 0.7) 100%);
+}
+
+.scanner-progress-yellow {
+  animation: scanner-progress 5.5s infinite;
+  background-size: 200% 100%;
+  border-radius: inherit;
+  background-image: linear-gradient(90deg, rgba(234, 179, 8, 0.7) 0%, rgb(234, 179, 8) 50%, rgba(234, 179, 8, 0.7) 100%);
+}
+
+.scanner-progress-gray {
+  animation: scanner-progress 6s infinite;
+  background-size: 200% 100%;
+  border-radius: inherit;
+  background-image: linear-gradient(90deg, rgba(75, 85, 99, 0.7) 0%, rgb(75, 85, 99) 50%, rgba(75, 85, 99, 0.7) 100%);
+}
+
+.dark .scanner-progress-gray {
+  animation: scanner-progress 6s infinite;
+  background-size: 200% 100%;
+  border-radius: inherit;
+  background-image: linear-gradient(90deg, rgba(229, 231, 235, 0.7) 0%, rgb(229, 231, 235) 50%, rgba(229, 231, 235, 0.7) 100%);
+}

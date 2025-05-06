@@ -178,7 +178,7 @@ export default function LandingPage() {
                           <div className="flex-1">
                             <p className="text-sm font-medium">URL Scanner</p>
                             <div className="h-2 bg-red-200 dark:bg-red-950/30 rounded-full mt-1 overflow-hidden">
-                              <div className="h-2 bg-gradient-to-r from-red-500 to-red-600 rounded-full w-2/3 animate-pulse" />
+                              <div className="h-2 scanner-progress-red w-2/3" />
                             </div>
                           </div>
                         </div>
@@ -187,7 +187,7 @@ export default function LandingPage() {
                           <div className="flex-1">
                             <p className="text-sm font-medium">File Analysis</p>
                             <div className="h-2 bg-green-200 dark:bg-green-950/30 rounded-full mt-1 overflow-hidden">
-                              <div className="h-2 bg-gradient-to-r from-green-500 to-green-600 rounded-full w-1/2 animate-pulse" />
+                              <div className="h-2 scanner-progress-green w-1/2" />
                             </div>
                           </div>
                         </div>
@@ -196,7 +196,7 @@ export default function LandingPage() {
                           <div className="flex-1">
                             <p className="text-sm font-medium">Image Steganography Detection</p>
                             <div className="h-2 bg-blue-200 dark:bg-blue-950/30 rounded-full mt-1 overflow-hidden">
-                              <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full w-4/5 animate-pulse" />
+                              <div className="h-2 scanner-progress-blue w-4/5" />
                             </div>
                           </div>
                         </div>
@@ -205,7 +205,7 @@ export default function LandingPage() {
                           <div className="flex-1">
                             <p className="text-sm font-medium">Audio Analysis</p>
                             <div className="h-2 bg-yellow-200 dark:bg-yellow-950/30 rounded-full mt-1 overflow-hidden">
-                              <div className="h-2 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full w-3/5 animate-pulse" />
+                              <div className="h-2 scanner-progress-yellow w-3/5" />
                             </div>
                           </div>
                         </div>
@@ -214,7 +214,7 @@ export default function LandingPage() {
                           <div className="flex-1">
                             <p className="text-sm font-medium">Video Security Scanner</p>
                             <div className="h-2 bg-gray-200 dark:bg-gray-600/30 rounded-full mt-1 overflow-hidden">
-                              <div className="h-2 bg-gradient-to-r from-gray-700 to-gray-800 dark:from-white dark:to-gray-200 rounded-full w-2/5 animate-pulse" />
+                              <div className="h-2 scanner-progress-gray w-2/5" />
                             </div>
                           </div>
                         </div>
