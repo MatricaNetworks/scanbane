@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "wouter";
-import { useAuth } from "@/hooks/use-auth";
 import { ShieldCheck } from "lucide-react";
 import { 
   Tabs, 
@@ -29,7 +28,6 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 
 const loginSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
@@ -42,27 +40,11 @@ const registerSchema = z.object({
   phoneNumber: z.string().min(10, "Phone number must be at least 10 digits"),
 });
 
-const phoneLoginSchema = z.object({
-  phoneNumber: z.string().min(10, "Phone number must be at least 10 digits"),
-});
-
-const otpSchema = z.object({
-  otp: z.string().length(6, "OTP must be 6 digits"),
-});
-
 export default function AuthPage() {
   const [_, navigate] = useLocation();
-  const { user, loginMutation, registerMutation, requestOtpMutation, verifyOtpMutation } = useAuth();
   const [activeTab, setActiveTab] = useState<string>("login");
-  const [showOtpForm, setShowOtpForm] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
-
-  // If user is already logged in, redirect to home
-  useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
-  }, [user, navigate]);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
 
   // Login form
   const loginForm = useForm<z.infer<typeof loginSchema>>({
@@ -83,48 +65,36 @@ export default function AuthPage() {
     },
   });
 
-  // Phone login form
-  const phoneLoginForm = useForm<z.infer<typeof phoneLoginSchema>>({
-    resolver: zodResolver(phoneLoginSchema),
-    defaultValues: {
-      phoneNumber: "",
-    },
-  });
-
-  // OTP verification form
-  const otpForm = useForm<z.infer<typeof otpSchema>>({
-    resolver: zodResolver(otpSchema),
-    defaultValues: {
-      otp: "",
-    },
-  });
-
   const onLoginSubmit = (data: z.infer<typeof loginSchema>) => {
-    loginMutation.mutate(data);
+    setIsLoggingIn(true);
+    console.log("Login attempted with:", data);
+    
+    // Demo login (username: demo, password: demo123)
+    setTimeout(() => {
+      if (data.username === "demo" && data.password === "demo123") {
+        navigate("/");
+      } else {
+        alert("Invalid credentials. Try using demo/demo123");
+        setIsLoggingIn(false);
+      }
+    }, 1500);
   };
 
   const onRegisterSubmit = (data: z.infer<typeof registerSchema>) => {
-    registerMutation.mutate(data);
-  };
-
-  const onPhoneLoginSubmit = (data: z.infer<typeof phoneLoginSchema>) => {
-    setPhoneNumber(data.phoneNumber);
-    requestOtpMutation.mutate(data, {
-      onSuccess: () => {
-        setShowOtpForm(true);
-      }
-    });
-  };
-
-  const onOtpSubmit = (data: z.infer<typeof otpSchema>) => {
-    verifyOtpMutation.mutate({
-      phoneNumber,
-      otp: data.otp
-    });
+    setIsRegistering(true);
+    console.log("Registration attempted with:", data);
+    
+    // Simulate registration
+    setTimeout(() => {
+      alert("Registration functionality is under development. Please use the demo account: demo/demo123");
+      setIsRegistering(false);
+      setActiveTab("login");
+    }, 1500);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gradient-to-r from-gray-50 to-gray-100 flex">
+      {/* Form Section */}
       <div className="flex-1 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 py-12">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
@@ -141,10 +111,9 @@ export default function AuthPage() {
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="grid grid-cols-3 w-full">
+            <TabsList className="grid grid-cols-2 w-full">
               <TabsTrigger value="login">Login</TabsTrigger>
               <TabsTrigger value="register">Register</TabsTrigger>
-              <TabsTrigger value="phone">Phone Login</TabsTrigger>
             </TabsList>
 
             {/* Login Form */}
@@ -153,7 +122,7 @@ export default function AuthPage() {
                 <CardHeader>
                   <CardTitle>Account Login</CardTitle>
                   <CardDescription>
-                    Login with your ScamBane account
+                    Login with your ScamBane account (demo/demo123)
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -166,7 +135,7 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Username</FormLabel>
                             <FormControl>
-                              <Input placeholder="username" {...field} />
+                              <Input placeholder="demo" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -179,7 +148,7 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                              <Input type="password" placeholder="••••••••" {...field} />
+                              <Input type="password" placeholder="demo123" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -187,10 +156,10 @@ export default function AuthPage() {
                       />
                       <Button 
                         type="submit" 
-                        className="w-full" 
-                        disabled={loginMutation.isPending}
+                        className="w-full"
+                        disabled={isLoggingIn}
                       >
-                        {loginMutation.isPending ? "Logging in..." : "Login"}
+                        {isLoggingIn ? "Logging in..." : "Login"}
                       </Button>
                     </form>
                   </Form>
@@ -259,10 +228,10 @@ export default function AuthPage() {
                       />
                       <Button 
                         type="submit" 
-                        className="w-full" 
-                        disabled={registerMutation.isPending}
+                        className="w-full"
+                        disabled={isRegistering}
                       >
-                        {registerMutation.isPending ? "Registering..." : "Register"}
+                        {isRegistering ? "Registering..." : "Register"}
                       </Button>
                     </form>
                   </Form>
@@ -277,137 +246,36 @@ export default function AuthPage() {
                 </CardFooter>
               </Card>
             </TabsContent>
-
-            {/* Phone Login Form */}
-            <TabsContent value="phone">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Phone Login</CardTitle>
-                  <CardDescription>
-                    Login with your phone number using OTP
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {!showOtpForm ? (
-                    <Form {...phoneLoginForm}>
-                      <form onSubmit={phoneLoginForm.handleSubmit(onPhoneLoginSubmit)} className="space-y-4">
-                        <FormField
-                          control={phoneLoginForm.control}
-                          name="phoneNumber"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Phone Number</FormLabel>
-                              <FormControl>
-                                <Input placeholder="+1 (123) 456-7890" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <Button 
-                          type="submit" 
-                          className="w-full" 
-                          disabled={requestOtpMutation.isPending}
-                        >
-                          {requestOtpMutation.isPending ? "Sending OTP..." : "Request OTP"}
-                        </Button>
-                      </form>
-                    </Form>
-                  ) : (
-                    <Form {...otpForm}>
-                      <form onSubmit={otpForm.handleSubmit(onOtpSubmit)} className="space-y-4">
-                        <FormField
-                          control={otpForm.control}
-                          name="otp"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>One-Time Password</FormLabel>
-                              <FormControl>
-                                <InputOTP maxLength={6} {...field}>
-                                  <InputOTPGroup>
-                                    <InputOTPSlot index={0} />
-                                    <InputOTPSlot index={1} />
-                                    <InputOTPSlot index={2} />
-                                    <InputOTPSlot index={3} />
-                                    <InputOTPSlot index={4} />
-                                    <InputOTPSlot index={5} />
-                                  </InputOTPGroup>
-                                </InputOTP>
-                              </FormControl>
-                              <p className="text-xs text-gray-500 mt-2">
-                                We've sent a verification code to your phone number.
-                              </p>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <div className="flex flex-col space-y-2">
-                          <Button 
-                            type="submit" 
-                            className="w-full" 
-                            disabled={verifyOtpMutation.isPending}
-                          >
-                            {verifyOtpMutation.isPending ? "Verifying..." : "Verify & Login"}
-                          </Button>
-                          <Button 
-                            type="button"
-                            variant="outline" 
-                            className="w-full"
-                            onClick={() => {
-                              setShowOtpForm(false);
-                              phoneLoginForm.reset();
-                            }}
-                          >
-                            Back
-                          </Button>
-                        </div>
-                      </form>
-                    </Form>
-                  )}
-                </CardContent>
-              </Card>
-            </TabsContent>
           </Tabs>
         </div>
       </div>
-
-      {/* Hero Section */}
-      <div className="hidden lg:block flex-1 bg-primary-600 text-white relative">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="p-12 relative z-10 h-full flex flex-col justify-center">
+      
+      {/* Info Section */}
+      <div className="hidden lg:flex flex-1 bg-primary text-white p-12 flex-col justify-center">
+        <div className="max-w-xl mx-auto">
           <h1 className="text-4xl font-bold mb-6">
             Proactive Cybersecurity for Everyone
           </h1>
           <p className="text-lg mb-8 opacity-90">
-            ScamBane protects you from phishing, malware, and other cyber threats by intercepting and analyzing URLs, files, and images before they can harm your device.
+            ScamBane offers real-time protection against phishing, malware, and other cyber threats. 
+            Protect all your devices with our comprehensive security solution.
           </p>
-          <div className="space-y-4">
-            <div className="flex items-start">
-              <div className="rounded-full bg-white/20 p-2 mr-4">
-                <ShieldCheck className="h-6 w-6" />
-              </div>
-              <div>
-                <h3 className="font-medium">Real-Time Protection</h3>
-                <p className="opacity-80">Scans content in real-time before it can reach your device</p>
-              </div>
+          <div className="grid grid-cols-2 gap-6">
+            <div className="flex flex-col space-y-2">
+              <h3 className="text-xl font-semibold">URL Protection</h3>
+              <p className="opacity-80">Intercepts and analyzes suspicious links before you click them.</p>
             </div>
-            <div className="flex items-start">
-              <div className="rounded-full bg-white/20 p-2 mr-4">
-                <ShieldCheck className="h-6 w-6" />
-              </div>
-              <div>
-                <h3 className="font-medium">Cross-Platform Support</h3>
-                <p className="opacity-80">Works on Android, iOS, Windows, and macOS devices</p>
-              </div>
+            <div className="flex flex-col space-y-2">
+              <h3 className="text-xl font-semibold">File Scanning</h3>
+              <p className="opacity-80">Detect malware in files before they harm your device.</p>
             </div>
-            <div className="flex items-start">
-              <div className="rounded-full bg-white/20 p-2 mr-4">
-                <ShieldCheck className="h-6 w-6" />
-              </div>
-              <div>
-                <h3 className="font-medium">Advanced Threat Detection</h3>
-                <p className="opacity-80">Identifies phishing, smishing, malware, and hidden steganography</p>
-              </div>
+            <div className="flex flex-col space-y-2">
+              <h3 className="text-xl font-semibold">Image Analysis</h3>
+              <p className="opacity-80">Find hidden malicious code using steganography detection.</p>
+            </div>
+            <div className="flex flex-col space-y-2">
+              <h3 className="text-xl font-semibold">Cross Platform</h3>
+              <p className="opacity-80">Works on Android, iOS, Windows, and macOS.</p>
             </div>
           </div>
         </div>
