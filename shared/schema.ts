@@ -12,6 +12,7 @@ export const users = pgTable("users", {
   scansUsed: integer("scans_used").default(0).notNull(),
   subscriptionTier: text("subscription_tier").default("free").notNull(),
   isActive: boolean("is_active").default(true).notNull(),
+  role: text("role").default("user").notNull(), // 'user', 'admin'
   createdAt: timestamp("created_at").defaultNow().notNull(),
   lastLogin: timestamp("last_login"),
 });

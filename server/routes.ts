@@ -65,6 +65,19 @@ async function checkTrialLimit(req: any, res: any, next: any) {
   next();
 }
 
+// Middleware to check if user is an admin
+function requireAdmin(req: any, res: any, next: any) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ message: "Authentication required" });
+  }
+  
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: "Admin privileges required" });
+  }
+  
+  next();
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication routes
   setupAuth(app);
@@ -291,6 +304,117 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       log(`License generation error: ${error}`, 'routes');
       res.status(500).json({ message: "Failed to generate license key" });
+    }
+  });
+  
+  // Admin API Routes
+  
+  // Get all scan results (for admin dashboard)
+  app.get("/api/admin/scans", requireAdmin, async (req, res) => {
+    try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : 50;
+      const offset = req.query.offset ? parseInt(req.query.offset as string) : 0;
+      
+      const result = await storage.getAllScanResults(limit, offset);
+      const totalCount = await storage.getScanResultsCount();
+      
+      res.status(200).json({
+        scans: result,
+        pagination: {
+          total: totalCount,
+          limit,
+          offset,
+          hasMore: offset + result.length < totalCount
+        }
+      });
+    } catch (error) {
+      log(`Admin scan fetch error: ${error}`, 'routes');
+      res.status(500).json({ message: "Failed to fetch scan results" });
+    }
+  });
+  
+  // Get scan statistics grouped by result type
+  app.get("/api/admin/stats/results", requireAdmin, async (req, res) => {
+    try {
+      const stats = await storage.getScanResultStats();
+      res.status(200).json(stats);
+    } catch (error) {
+      log(`Admin stats error: ${error}`, 'routes');
+      res.status(500).json({ message: "Failed to fetch scan statistics" });
+    }
+  });
+  
+  // Get scan statistics grouped by threat type
+  app.get("/api/admin/stats/threats", requireAdmin, async (req, res) => {
+    try {
+      const stats = await storage.getThreatTypeStats();
+      res.status(200).json(stats);
+    } catch (error) {
+      log(`Admin threat stats error: ${error}`, 'routes');
+      res.status(500).json({ message: "Failed to fetch threat statistics" });
+    }
+  });
+  
+  // Get user statistics
+  app.get("/api/admin/stats/users", requireAdmin, async (req, res) => {
+    try {
+      const stats = await storage.getUserStats();
+      res.status(200).json(stats);
+    } catch (error) {
+      log(`Admin user stats error: ${error}`, 'routes');
+      res.status(500).json({ message: "Failed to fetch user statistics" });
+    }
+  });
+  
+  // Get all users
+  app.get("/api/admin/users", requireAdmin, async (req, res) => {
+    try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : 50;
+      const offset = req.query.offset ? parseInt(req.query.offset as string) : 0;
+      
+      const users = await storage.getAllUsers(limit, offset);
+      const totalCount = await storage.getUserCount();
+      
+      res.status(200).json({
+        users,
+        pagination: {
+          total: totalCount,
+          limit,
+          offset,
+          hasMore: offset + users.length < totalCount
+        }
+      });
+    } catch (error) {
+      log(`Admin user fetch error: ${error}`, 'routes');
+      res.status(500).json({ message: "Failed to fetch users" });
+    }
+  });
+  
+  // Update user role/subscription
+  app.patch("/api/admin/users/:userId", requireAdmin, async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const { role, subscriptionTier, isActive } = req.body;
+      
+      if (isNaN(userId)) {
+        return res.status(400).json({ message: "Invalid user ID" });
+      }
+      
+      // Update the user with the provided fields
+      const updatedUser = await storage.updateUser(userId, {
+        ...(role !== undefined && { role }),
+        ...(subscriptionTier !== undefined && { subscriptionTier }),
+        ...(isActive !== undefined && { isActive }),
+      });
+      
+      if (!updatedUser) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      
+      res.status(200).json(updatedUser);
+    } catch (error) {
+      log(`Admin user update error: ${error}`, 'routes');
+      res.status(500).json({ message: "Failed to update user" });
     }
   });
 

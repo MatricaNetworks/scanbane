@@ -1,6 +1,6 @@
 import { db } from "@db";
 import { users, scanResults, licenses } from "@shared/schema";
-import { eq, desc, and } from "drizzle-orm";
+import { eq, desc, and, count } from "drizzle-orm";
 import type { InsertUser, User, InsertScanResult, ScanResult } from "@shared/schema";
 import { createId } from "@paralleldrive/cuid2";
 import session from "express-session";
@@ -16,10 +16,30 @@ export interface IStorage {
   getUserByUsername(username: string): Promise<User | undefined>;
   getUserByPhoneNumber(phoneNumber: string): Promise<User | undefined>;
   updateUserScans(userId: number): Promise<User | undefined>;
+  updateUser(userId: number, updates: Partial<User>): Promise<User | undefined>;
+  getAllUsers(limit?: number, offset?: number): Promise<User[]>;
+  getUserCount(): Promise<number>;
+  getUserStats(): Promise<{
+    totalUsers: number;
+    activeUsers: number;
+    premiumUsers: number;
+    enterpriseUsers: number;
+    freeUsers: number;
+  }>;
   
   // Scan operations
   createScanResult(scan: InsertScanResult): Promise<ScanResult>;
   getScanResults(userId: number, limit?: number): Promise<ScanResult[]>;
+  getAllScanResults(limit?: number, offset?: number): Promise<ScanResult[]>;
+  getScanResultsCount(): Promise<number>;
+  getScanResultStats(): Promise<{ 
+    result: string; 
+    count: number 
+  }[]>;
+  getThreatTypeStats(): Promise<{ 
+    threatType: string; 
+    count: number 
+  }[]>;
   
   // License operations
   generateLicenseKey(tier: string, maxActivations: number): Promise<string>;
@@ -112,6 +132,126 @@ export class DatabaseStorage implements IStorage {
     });
     
     return licenseKey;
+  }
+  
+  async updateUser(userId: number, updates: Partial<User>): Promise<User | undefined> {
+    try {
+      const [updatedUser] = await db
+        .update(users)
+        .set(updates)
+        .where(eq(users.id, userId))
+        .returning();
+      
+      return updatedUser;
+    } catch (error) {
+      console.error("Error updating user:", error);
+      return undefined;
+    }
+  }
+  
+  async getAllUsers(limit = 50, offset = 0): Promise<User[]> {
+    const results = await db.query.users.findMany({
+      orderBy: desc(users.createdAt),
+      limit,
+      offset
+    });
+    return results;
+  }
+  
+  async getUserCount(): Promise<number> {
+    const result = await db.select({ count: count() }).from(users);
+    return result[0].count;
+  }
+  
+  async getUserStats(): Promise<{
+    totalUsers: number;
+    activeUsers: number;
+    premiumUsers: number;
+    enterpriseUsers: number;
+    freeUsers: number;
+  }> {
+    // Get total users
+    const totalCount = await this.getUserCount();
+    
+    // Get active users
+    const activeCount = await db
+      .select({ count: count() })
+      .from(users)
+      .where(eq(users.isActive, true));
+    
+    // Get premium users
+    const premiumCount = await db
+      .select({ count: count() })
+      .from(users)
+      .where(eq(users.subscriptionTier, 'premium'));
+    
+    // Get enterprise users
+    const enterpriseCount = await db
+      .select({ count: count() })
+      .from(users)
+      .where(eq(users.subscriptionTier, 'enterprise'));
+    
+    // Get free users
+    const freeCount = await db
+      .select({ count: count() })
+      .from(users)
+      .where(eq(users.subscriptionTier, 'free'));
+    
+    return {
+      totalUsers: totalCount,
+      activeUsers: activeCount[0].count,
+      premiumUsers: premiumCount[0].count,
+      enterpriseUsers: enterpriseCount[0].count,
+      freeUsers: freeCount[0].count,
+    };
+  }
+  
+  async getAllScanResults(limit = 50, offset = 0): Promise<ScanResult[]> {
+    const results = await db.query.scanResults.findMany({
+      orderBy: desc(scanResults.createdAt),
+      limit,
+      offset,
+      with: {
+        user: true
+      }
+    });
+    return results;
+  }
+  
+  async getScanResultsCount(): Promise<number> {
+    const result = await db.select({ count: count() }).from(scanResults);
+    return result[0].count;
+  }
+  
+  async getScanResultStats(): Promise<{ result: string; count: number }[]> {
+    // This requires a direct SQL query for aggregation
+    const results = await db.execute(
+      `SELECT result, COUNT(*) as count 
+       FROM scan_results 
+       GROUP BY result 
+       ORDER BY count DESC`
+    );
+    
+    return results.rows.map((row: any) => ({
+      result: row.result,
+      count: parseInt(row.count)
+    }));
+  }
+  
+  async getThreatTypeStats(): Promise<{ threatType: string; count: number }[]> {
+    // This requires a direct SQL query for aggregation
+    const results = await db.execute(
+      `SELECT threat_type as "threatType", COUNT(*) as count 
+       FROM scan_results 
+       WHERE threat_type IS NOT NULL 
+       GROUP BY threat_type 
+       ORDER BY count DESC`
+    );
+    
+    return results.rows.map((row: any) => ({
+      threatType: row.threatType || 'Unknown',
+      count: parseInt(row.count)
+    }));
   }
 }
 
