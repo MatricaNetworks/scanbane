@@ -4,10 +4,15 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.11"
 dependencies = [
+    "cairosvg>=2.7.1",
+    "ffmpeg-python>=0.2.0",
+    "librosa>=0.11.0",
     "matplotlib>=3.10.1",
     "numpy>=2.2.5",
     "opencv-python>=4.11.0.86",
     "pillow>=11.2.1",
+    "pydub>=0.25.1",
+    "pyheif>=0.8.0",
     "scikit-image>=0.25.2",
     "scipy>=1.15.2",
 ]

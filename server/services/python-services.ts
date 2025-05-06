@@ -344,8 +344,8 @@ export class PythonImageAnalysisService {
       // Save the image to a temporary location
       const tempFilePath = await saveToTempFile(imageBuffer, '.png');
       
-      // Run the steganography detection Python script
-      return await executePythonScript('steganography_service.py', [tempFilePath]);
+      // Run the advanced media steganography detection script
+      return await executePythonScript('advanced_media_steganography.py', [tempFilePath], imageBuffer);
     } catch (error) {
       log(`Failed to execute steganography detection script: ${error}`, 'python-image-service');
       throw error;

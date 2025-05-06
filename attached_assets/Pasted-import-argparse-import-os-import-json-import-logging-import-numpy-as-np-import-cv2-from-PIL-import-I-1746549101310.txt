@@ -1,0 +1,153 @@
+import argparse
+import os
+import json
+import logging
+import numpy as np
+import cv2
+from PIL import Image
+from scipy.stats import chisquare
+from skimage.measure import shannon_entropy
+import matplotlib.pyplot as plt
+import io
+from pydub import AudioSegment
+import wave
+import librosa
+import ffmpeg
+import scipy.fft
+import pyheif
+import cairosvg
+
+logging.basicConfig(level=logging.INFO)
+
+SUPPORTED_FORMATS = [
+    '.jpg', '.jpeg', '.png', '.gif', '.webp', 
+    '.bmp', '.tiff', '.tif', '.ico', '.heic',
+    '.heif', '.svg', '.avif', '.mp3', '.wav', '.aac', '.flac', '.ogg', '.amr', 
+    '.mp4', '.avi', '.mkv', '.mov', '.webm', '.flv'
+]
+
+LOSSY_FORMATS = ['.jpg', '.jpeg', '.webp', '.heic', '.heif', '.avif', '.mp3', '.aac', '.ogg', '.amr', '.flv']
+
+# Audio Functions
+
+def extract_audio_from_video(video_path: str):
+    """ Extract audio from video file """
+    audio_output_path = "extracted_audio.wav"
+    ffmpeg.input(video_path).output(audio_output_path).run()
+    return audio_output_path
+
+def analyze_audio_lsb(audio_path: str) -> dict:
+    """ Detect LSB steganography in audio files """
+    try:
+        # Load audio file
+        audio = AudioSegment.from_file(audio_path)
+        samples = np.array(audio.get_array_of_samples())
+        
+        # Perform LSB analysis
+        lsb_plane = samples & 1
+        chi_val, chi_p = chi_square_test(lsb_plane)
+        entropy_val = image_entropy(lsb_plane)
+        
+        return {
+            "audio_file": audio_path,
+            "chi_square_p": round(chi_p, 5),
+            "lsb_entropy": round(entropy_val, 4),
+            "suspicious": chi_p < 0.05 or entropy_val > 0.9,
+            "message": "⚠️ Possible LSB steganography detected." if chi_p < 0.05 or entropy_val > 0.9 else "✅ No strong indicators of steganography."
+        }
+    except Exception as e:
+        logging.error(f"Error analyzing audio: {e}")
+        return {"audio_file": audio_path, "message": "❌ Error analyzing audio."}
+
+# Video Functions
+
+def extract_frames_from_video(video_path: str):
+    """ Extract video frames for analysis """
+    cap = cv2.VideoCapture(video_path)
+    frames = []
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+        frames.append(frame)
+    cap.release()
+    return frames
+
+def analyze_video(video_path: str) -> dict:
+    """ Detect LSB steganography in video files """
+    frames = extract_frames_from_video(video_path)
+    results = []
+    for i, frame in enumerate(frames):
+        # LSB analysis for frames (same as image analysis)
+        lsb_plane = extract_lsb_plane(frame)
+        chi_val, chi_p = chi_square_test(lsb_plane)
+        entropy_val = image_entropy(lsb_plane)
+        results.append({
+            "frame": i,
+            "chi_square_p": round(chi_p, 5),
+            "lsb_entropy": round(entropy_val, 4),
+            "suspicious": chi_p < 0.05 or entropy_val > 0.9,
+            "message": "⚠️ Possible LSB steganography detected." if chi_p < 0.05 or entropy_val > 0.9 else "✅ No strong indicators of steganography."
+        })
+    return results
+
+# LSB Detection for Images
+
+def extract_lsb_plane(image: np.ndarray) -> np.ndarray:
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    return gray & 1
+
+def chi_square_test(lsb_plane: np.ndarray):
+    flat = lsb_plane.flatten()
+    values, counts = np.unique(flat, return_counts=True)
+    expected = [len(flat) / 2] * 2
+    chi, p = chisquare(counts, f_exp=expected)
+    return chi, p
+
+def image_entropy(image: np.ndarray) -> float:
+    return shannon_entropy(image)
+
+# Combine all detection functionalities
+def analyze_media_file(file_path: str, visualize=False) -> dict:
+    ext = os.path.splitext(file_path)[-1].lower()
+    result = {}
+
+    if ext in SUPPORTED_FORMATS:
+        if ext in ['.mp3', '.wav', '.aac', '.flac', '.ogg', '.amr']:
+            result = analyze_audio_lsb(file_path)
+        elif ext in ['.mp4', '.avi', '.mkv', '.mov', '.webm', '.flv']:
+            result = analyze_video(file_path)
+        elif ext in ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.ico', '.heic', '.heif', '.svg', '.avif']:
+            img = load_image_safe(file_path)
+            lsb_plane = extract_lsb_plane(img)
+            chi_val, chi_p = chi_square_test(lsb_plane)
+            entropy_val = image_entropy(lsb_plane)
+            result = {
+                "image_file": file_path,
+                "chi_square_p": round(chi_p, 5),
+                "lsb_entropy": round(entropy_val, 4),
+                "suspicious": chi_p < 0.05 or entropy_val > 0.9,
+                "message": "⚠️ Possible LSB steganography detected." if chi_p < 0.05 or entropy_val > 0.9 else "✅ No strong indicators of steganography."
+            }
+        else:
+            result = {"file": file_path, "message": "❌ Unsupported file format."}
+
+    return result
+
+def main():
+    parser = argparse.ArgumentParser(description="Advanced Media Steganography Detector")
+    parser.add_argument("file", help="Path to the media file (image, audio, or video)")
+    parser.add_argument("--visualize", action="store_true", help="Visualize analysis (if applicable)")
+    parser.add_argument("--json", action="store_true", help="Output result as JSON")
+    args = parser.parse_args()
+
+    try:
+        result = analyze_media_file(args.file, visualize=args.visualize)
+        print(json.dumps(result, indent=2) if args.json else result)
+    except Exception as e:
+        logging.error(f"Failed to process: {e}")
+        exit(1)
+
+
+if __name__ == "__main__":
+    main()
