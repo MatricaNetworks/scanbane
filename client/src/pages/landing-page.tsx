@@ -623,8 +623,7 @@ export default function LandingPage() {
                         {/* Text Content */}
                         <div className="relative z-10 text-center transform transition-all duration-300 group-hover:scale-105">
                           <div className="text-2xl font-bold bg-gradient-to-r from-red-500 via-secondary to-blue-500 bg-clip-text text-transparent animate-[pulse_5s_ease-in-out_infinite]">ScamBane</div>
-                          <div className="mt-1 text-lg font-medium text-foreground/90">Security Triad</div>
-                          <div className="mt-1 text-xs font-light text-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Comprehensive Protection</div>
+                          <div className="mt-1 text-xs font-light text-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">by Matrica Networks Pvt Ltd</div>
                         </div>
                       </div>
                       
