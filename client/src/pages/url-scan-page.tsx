@@ -8,7 +8,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import { ScanResultDialog } from "@/components/scan-result-dialog";
-import { useAuth } from "@/hooks/use-auth";
+// import { useAuth } from "@/hooks/use-auth";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
 import { 
   Form, 
@@ -26,7 +26,13 @@ import { AlertTriangle, Link, Shield, ShieldCheck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function UrlScanPage() {
-  const { user } = useAuth();
+  // Mock user data for demo
+  const user = {
+    id: 1,
+    username: "demo",
+    subscriptionTier: "free",
+    scansUsed: 1
+  };
   const { toast } = useToast();
   const [scanResult, setScanResult] = useState<any>(null);
   const [scanResultOpen, setScanResultOpen] = useState(false);

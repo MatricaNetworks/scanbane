@@ -4,7 +4,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import { ScanResultDialog } from "@/components/scan-result-dialog";
-import { useAuth } from "@/hooks/use-auth";
+// import { useAuth } from "@/hooks/use-auth";
 import { UpgradeDialog } from "@/components/upgrade-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,7 +14,13 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 
 export default function ImageScanPage() {
-  const { user } = useAuth();
+  // Mock user data for demo
+  const user = {
+    id: 1,
+    username: "demo",
+    subscriptionTier: "free",
+    scansUsed: 1
+  };
   const { toast } = useToast();
   const [scanResult, setScanResult] = useState<any>(null);
   const [scanResultOpen, setScanResultOpen] = useState(false);
