@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useMobile } from "@/hooks/use-mobile";
+import { useAuth } from "@/hooks/use-auth";
 import {
   Home,
   Link as LinkIcon,
@@ -12,17 +13,12 @@ import {
   Bell,
   Settings,
   LogOut,
-  ShieldCheck
+  ShieldCheck,
+  LayoutDashboard
 } from "lucide-react";
 
 export function Sidebar() {
-  // Mock user data for demo purposes
-  const user = {
-    id: 1,
-    username: "demo",
-    subscriptionTier: "free",
-    scansUsed: 1
-  };
+  const { user } = useAuth();
   const [location] = useLocation();
   const isMobile = useMobile();
   
@@ -46,6 +42,11 @@ export function Sidebar() {
     { name: "My Account", path: "/account", icon: <User className="h-5 w-5" /> },
     { name: "Notifications", path: "/notifications", icon: <Bell className="h-5 w-5" /> },
     { name: "Settings", path: "/settings", icon: <Settings className="h-5 w-5" /> }
+  ];
+  
+  // Admin links
+  const adminLinks = [
+    { name: "Admin Dashboard", path: "/admin", icon: <LayoutDashboard className="h-5 w-5" /> }
   ];
 
   return (
@@ -95,6 +96,29 @@ export function Sidebar() {
               </Link>
             ))}
           </div>
+          
+          {/* Admin section - only visible to admins */}
+          {user?.role === 'admin' && (
+            <div className="pt-4 mt-4 border-t border-gray-700">
+              <h3 className="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                Administration
+              </h3>
+              
+              {adminLinks.map((link) => (
+                <Link key={link.path} href={link.path}>
+                  <a className={cn(
+                    "flex items-center px-3 py-2 mt-2 text-sm font-medium rounded-md",
+                    isActiveRoute(link.path)
+                      ? "bg-primary text-white"
+                      : "text-gray-300 hover:bg-gray-700"
+                  )}>
+                    {link.icon}
+                    <span className="ml-3">{link.name}</span>
+                  </a>
+                </Link>
+              ))}
+            </div>
+          )}
         </nav>
       </div>
       
