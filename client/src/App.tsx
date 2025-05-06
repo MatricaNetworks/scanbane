@@ -12,6 +12,9 @@ import AdminDashboard from "@/pages/admin-dashboard";
 import { ProtectedRoute } from "./lib/protected-route";
 import { ThemeProvider } from "./lib/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { AuthProvider } from "@/hooks/use-auth";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/lib/queryClient";
 
 function Router() {
   return (
@@ -32,10 +35,14 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light">
-      <Router />
-      <Toaster />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ThemeProvider defaultTheme="light">
+          <Router />
+          <Toaster />
+        </ThemeProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 
