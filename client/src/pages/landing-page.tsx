@@ -611,15 +611,15 @@ export default function LandingPage() {
                         {/* Animated Rays */}
                         <div className="absolute inset-0 opacity-20 overflow-hidden rounded-full">
                           <div className="w-[200%] h-[200%] absolute -top-1/2 -left-1/2 animate-[spin_15s_linear_infinite]">
-                            <div className="w-full h-2 bg-primary absolute top-1/2 left-0 blur-sm"></div>
+                            <div className="w-full h-2 bg-red-500 absolute top-1/2 left-0 blur-sm"></div>
                             <div className="w-full h-2 bg-secondary absolute top-1/2 left-0 rotate-60 blur-sm"></div>
-                            <div className="w-full h-2 bg-red-500 absolute top-1/2 left-0 rotate-120 blur-sm"></div>
+                            <div className="w-full h-2 bg-blue-500 absolute top-1/2 left-0 rotate-120 blur-sm"></div>
                           </div>
                         </div>
                         
                         {/* Text Content */}
                         <div className="relative z-10 text-center transform transition-all duration-300 group-hover:scale-105">
-                          <div className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-red-500 bg-clip-text text-transparent animate-[pulse_5s_ease-in-out_infinite]">ScamBane</div>
+                          <div className="text-2xl font-bold bg-gradient-to-r from-red-500 via-secondary to-blue-500 bg-clip-text text-transparent animate-[pulse_5s_ease-in-out_infinite]">ScamBane</div>
                           <div className="mt-1 text-lg font-medium text-foreground/90">Security Triad</div>
                           <div className="mt-1 text-xs font-light text-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Comprehensive Protection</div>
                         </div>
