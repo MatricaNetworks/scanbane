@@ -150,7 +150,7 @@ export default function FileScanPage() {
                     <p className="text-sm text-gray-500 mb-4">
                       or click to browse files 
                       <span className="text-xs block mt-1">
-                        (PDF, EXE, ZIP, MSI, and other files)
+                        (PDF, EXE, ZIP, MSI, APK, and other files)
                       </span>
                     </p>
                     <Input
@@ -260,6 +260,23 @@ export default function FileScanPage() {
                       <p className="text-sm text-gray-600">
                         On desktop, ScamBane automatically scans all downloads in real-time before they can
                         be opened, keeping your system safe from malicious content.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-5">
+                  <div className="flex items-start">
+                    <div className="p-2 rounded-full bg-green-100 text-secondary-600 mr-3 mt-1">
+                      <AndroidLogo className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium mb-1">APK Security Analysis</h3>
+                      <p className="text-sm text-gray-600">
+                        Specialized scanning for Android application packages (APKs) to detect malicious code,
+                        excessive permissions, and backdoors before installation on your device.
                       </p>
                     </div>
                   </div>
