@@ -607,7 +607,7 @@ export default function LandingPage() {
                       </div>
                       
                       {/* Inner glowing core */}
-                      <div className="bg-background/60 backdrop-blur-xl rounded-full p-4 shadow-[0_0_30px_rgba(var(--shadow-rgb),0.25)] border border-border/60 flex items-center justify-center w-36 h-36 transition-all duration-500 hover:scale-110 hover:shadow-[0_0_40px_rgba(var(--shadow-rgb),0.4)] group relative overflow-hidden">
+                      <div className="bg-background/60 backdrop-blur-xl rounded-full p-4 shadow-[0_0_30px_rgba(var(--shadow-rgb),0.25)] border border-border/60 flex items-center justify-center w-36 h-36 transition-all duration-500 hover:scale-110 hover:shadow-[0_0_40px_rgba(var(--shadow-rgb),0.4)] group relative overflow-hidden cursor-pointer">
                         {/* Animated highlight */}
                         <div className="absolute top-0 left-0 w-full h-full rounded-full bg-gradient-to-br from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                         
@@ -623,7 +623,14 @@ export default function LandingPage() {
                         {/* Text Content */}
                         <div className="relative z-10 text-center transform transition-all duration-300 group-hover:scale-105">
                           <div className="text-2xl font-bold bg-gradient-to-r from-red-500 via-secondary to-blue-500 bg-clip-text text-transparent animate-[pulse_5s_ease-in-out_infinite]">ScamBane</div>
-                          <div className="mt-1 text-xs font-light text-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">by Matrica Networks Pvt Ltd</div>
+                        </div>
+                        
+                        {/* Company info popup on hover - similar to triangle points */}
+                        <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20 text-center mt-3 absolute opacity-0 group-hover:opacity-100 top-full z-40 min-w-[230px] transform group-hover:translate-y-2">
+                          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 border border-border/50"></div>
+                          <h3 className="text-lg font-semibold mb-1 bg-gradient-to-r from-red-500 via-primary to-blue-500 bg-clip-text text-transparent">Matrica Networks</h3>
+                          <p className="text-sm text-foreground/80">Pvt Ltd</p>
+                          <p className="text-xs text-foreground/60 mt-1">Comprehensive Cybersecurity Solutions</p>
                         </div>
                       </div>
                       
