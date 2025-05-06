@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function TermsOfService() {
   return (
-    <div className="container mx-auto px-4 py-12 max-w-4xl">
+    <div className="container mx-auto px-4 py-12 max-w-4xl bg-white text-black">
       <div className="mb-8">
         <Button variant="ghost" asChild size="sm">
           <Link href="/" className="flex items-center">
@@ -15,9 +15,9 @@ export default function TermsOfService() {
         </Button>
       </div>
       
-      <div className="prose prose-lg dark:prose-invert max-w-none">
+      <div className="prose prose-lg max-w-none">
         <h1>Terms of Service</h1>
-        <p className="text-muted-foreground">Last updated: May 6, 2025</p>
+        <p className="text-gray-600">Last updated: May 6, 2025</p>
         
         <p>
           Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the 
@@ -180,7 +180,7 @@ export default function TermsOfService() {
         </p>
         
         <div className="mt-12 border-t pt-6">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-gray-600">
             © {new Date().getFullYear()} ScamBane by Matrica Networks Private Limited. All rights reserved.
           </p>
         </div>
