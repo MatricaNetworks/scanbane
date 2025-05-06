@@ -118,13 +118,12 @@ export function Header({ title }: HeaderProps) {
                     </div>
                     
                     <div className="pt-4 mt-4 border-t border-gray-700">
-                      <a
-                        className="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700"
-                        onClick={() => logoutMutation.mutate()}
-                      >
-                        <LogOut className="h-5 w-5" />
-                        <span className="ml-3">Logout</span>
-                      </a>
+                      <Link href="/auth">
+                        <a className="flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700">
+                          <LogOut className="h-5 w-5" />
+                          <span className="ml-3">Logout</span>
+                        </a>
+                      </Link>
                     </div>
                   </nav>
                 </div>
@@ -179,12 +178,13 @@ export function Header({ title }: HeaderProps) {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem 
-                  className="text-red-600 focus:text-red-600" 
-                  onClick={() => logoutMutation.mutate()}
-                >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Logout</span>
+                <DropdownMenuItem asChild>
+                  <Link href="/auth">
+                    <a className="flex cursor-pointer items-center text-red-600">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Logout</span>
+                    </a>
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
