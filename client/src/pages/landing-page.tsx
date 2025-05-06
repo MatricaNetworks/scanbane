@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { 
   Shield, ShieldCheck, ShieldAlert, Globe, FileText, Image, 
-  Smartphone, ArrowRight, Menu, X, Music, Video
+  Smartphone, ArrowRight, Menu, X, Music, Video,
+  Twitter, Linkedin, Github, Mail
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -237,9 +238,9 @@ export default function LandingPage() {
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4">
-                  <Globe className="h-6 w-6 text-primary" />
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-b hover:from-background hover:to-primary/5 active:scale-95 cursor-pointer">
+                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                  <Globe className="h-6 w-6 text-primary transition-all duration-300 hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">URL Scanning</h3>
                 <p className="text-foreground/70">
@@ -247,9 +248,9 @@ export default function LandingPage() {
                 </p>
               </div>
               
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4">
-                  <FileText className="h-6 w-6 text-secondary" />
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-b hover:from-background hover:to-secondary/5 active:scale-95 cursor-pointer">
+                <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                  <FileText className="h-6 w-6 text-secondary transition-all duration-300 hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">File Analysis</h3>
                 <p className="text-foreground/70">
@@ -257,9 +258,9 @@ export default function LandingPage() {
                 </p>
               </div>
               
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4">
-                  <Image className="h-6 w-6 text-primary" />
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-b hover:from-background hover:to-primary/5 active:scale-95 cursor-pointer">
+                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                  <Image className="h-6 w-6 text-primary transition-all duration-300 hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Image Scanning</h3>
                 <p className="text-foreground/70">
@@ -267,9 +268,9 @@ export default function LandingPage() {
                 </p>
               </div>
               
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4">
-                  <Smartphone className="h-6 w-6 text-secondary" />
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-b hover:from-background hover:to-secondary/5 active:scale-95 cursor-pointer">
+                <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                  <Smartphone className="h-6 w-6 text-secondary transition-all duration-300 hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">APK Analysis</h3>
                 <p className="text-foreground/70">
@@ -277,9 +278,9 @@ export default function LandingPage() {
                 </p>
               </div>
               
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4">
-                  <ShieldAlert className="h-6 w-6 text-primary" />
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-b hover:from-background hover:to-primary/5 active:scale-95 cursor-pointer">
+                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                  <ShieldAlert className="h-6 w-6 text-primary transition-all duration-300 hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Threat Intelligence</h3>
                 <p className="text-foreground/70">
@@ -287,9 +288,9 @@ export default function LandingPage() {
                 </p>
               </div>
               
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4">
-                  <Music className="h-6 w-6 text-secondary" />
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-b hover:from-background hover:to-secondary/5 active:scale-95 cursor-pointer">
+                <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                  <Music className="h-6 w-6 text-secondary transition-all duration-300 hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Audio Analysis</h3>
                 <p className="text-foreground/70">
@@ -297,9 +298,9 @@ export default function LandingPage() {
                 </p>
               </div>
               
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4">
-                  <Video className="h-6 w-6 text-primary" />
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-b hover:from-background hover:to-primary/5 active:scale-95 cursor-pointer">
+                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                  <Video className="h-6 w-6 text-primary transition-all duration-300 hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Video Scanning</h3>
                 <p className="text-foreground/70">
@@ -307,9 +308,9 @@ export default function LandingPage() {
                 </p>
               </div>
               
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-secondary" />
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-b hover:from-background hover:to-secondary/5 active:scale-95 cursor-pointer">
+                <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                  <Shield className="h-6 w-6 text-secondary transition-all duration-300 hover:animate-pulse" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">AI-Powered Analysis</h3>
                 <p className="text-foreground/70">
@@ -331,37 +332,37 @@ export default function LandingPage() {
             </div>
             
             <div className="grid md:grid-cols-3 gap-8 md:gap-4">
-              <div className="flex flex-col items-center text-center p-6">
+              <div className="flex flex-col items-center text-center p-6 transform transition-all duration-300 hover:scale-105 rounded-xl hover:bg-card hover:shadow-md active:scale-95 cursor-pointer">
                 <div className="relative">
-                  <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4">
+                  <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110 hover:bg-primary/20">
                     <span className="text-2xl font-bold text-primary">1</span>
                   </div>
                   <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-primary/30" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Automatic Interception</h3>
+                <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">Automatic Interception</h3>
                 <p className="text-foreground/70">
                   ScamBane intercepts all content—URLs, images, files, audio, and video—before they reach you, providing proactive protection.
                 </p>
               </div>
               
-              <div className="flex flex-col items-center text-center p-6">
+              <div className="flex flex-col items-center text-center p-6 transform transition-all duration-300 hover:scale-105 rounded-xl hover:bg-card hover:shadow-md active:scale-95 cursor-pointer">
                 <div className="relative">
-                  <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4">
+                  <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110 hover:bg-primary/20">
                     <span className="text-2xl font-bold text-primary">2</span>
                   </div>
                   <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-primary/30" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Intelligent Analysis</h3>
+                <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">Intelligent Analysis</h3>
                 <p className="text-foreground/70">
                   Content is analyzed using multi-layered detection including steganography analysis in images, audio, and video files to find hidden threats.
                 </p>
               </div>
               
-              <div className="flex flex-col items-center text-center p-6">
-                <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4">
+              <div className="flex flex-col items-center text-center p-6 transform transition-all duration-300 hover:scale-105 rounded-xl hover:bg-card hover:shadow-md active:scale-95 cursor-pointer">
+                <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110 hover:bg-primary/20">
                   <span className="text-2xl font-bold text-primary">3</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Safe Access & Reporting</h3>
+                <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">Safe Access & Reporting</h3>
                 <p className="text-foreground/70">
                   Safe content is allowed through while dangerous items are blocked. You receive detailed reports on threats detected and actions taken.
                 </p>
@@ -381,7 +382,7 @@ export default function LandingPage() {
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-102 hover:bg-gradient-to-b hover:from-background hover:to-muted/30 active:scale-98">
                 <div className="text-center mb-6">
                   <h3 className="text-lg font-medium text-foreground/70">Free</h3>
                   <div className="mt-2">
@@ -392,15 +393,15 @@ export default function LandingPage() {
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>10 URL scans per day</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>5 File scans per day</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>Basic threat detection</span>
                   </li>
                   <li className="flex items-center opacity-50">
@@ -417,57 +418,57 @@ export default function LandingPage() {
                   </li>
                 </ul>
                 
-                <Button className="w-full" variant="outline" onClick={() => navigate("/auth")}>
+                <Button className="w-full transition-transform duration-200 hover:scale-105 active:scale-95" variant="outline" onClick={() => navigate("/auth")}>
                   Get Started
                 </Button>
               </div>
               
-              <div className="bg-gradient-to-b from-background to-muted/10 border border-primary/20 rounded-xl p-6 shadow-lg relative lg:scale-105 z-10">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-sm font-medium py-1 px-3 rounded-full">
+              <div className="bg-gradient-to-b from-background to-muted/10 border border-primary/20 rounded-xl p-6 shadow-lg relative lg:scale-105 z-10 transform transition-all duration-300 hover:shadow-xl hover:scale-[1.07] hover:border-primary/40 active:scale-[1.03]">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-sm font-medium py-1 px-3 rounded-full transition-all duration-300 hover:scale-110">
                   Most Popular
                 </div>
                 
                 <div className="text-center mb-6">
                   <h3 className="text-lg font-medium text-foreground/70">Premium</h3>
                   <div className="mt-2">
-                    <span className="text-4xl font-bold">$9.99</span>
+                    <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">$9.99</span>
                     <span className="text-foreground/70">/month</span>
                   </div>
                 </div>
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>Unlimited URL scans</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>100 File scans per day</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>Advanced threat detection</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>APK analysis</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>Audio & video scanning</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>AI-powered detection</span>
                   </li>
                 </ul>
                 
-                <Button className="w-full" onClick={() => navigate("/auth")}>
+                <Button className="w-full transition-transform duration-200 hover:scale-105 active:scale-95 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90" onClick={() => navigate("/auth")}>
                   Upgrade Now
                 </Button>
               </div>
               
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transform transition-all duration-300 hover:shadow-lg hover:scale-102 hover:bg-gradient-to-b hover:from-background hover:to-muted/30 active:scale-98">
                 <div className="text-center mb-6">
                   <h3 className="text-lg font-medium text-foreground/70">Enterprise</h3>
                   <div className="mt-2">
@@ -478,28 +479,28 @@ export default function LandingPage() {
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>Unlimited all scans</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>Priority analysis</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>Advanced threat intelligence</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>API access</span>
                   </li>
                   <li className="flex items-center">
-                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2" />
+                    <ShieldCheck className="h-5 w-5 text-green-500 mr-2 transition-transform duration-300 hover:scale-110" />
                     <span>Dedicated support</span>
                   </li>
                 </ul>
                 
-                <Button variant="outline" className="w-full" onClick={() => navigate("/auth")}>
+                <Button variant="outline" className="w-full transition-transform duration-200 hover:scale-105 active:scale-95" onClick={() => navigate("/auth")}>
                   Contact Sales
                 </Button>
               </div>
@@ -522,7 +523,11 @@ export default function LandingPage() {
                 We believe in transparency, privacy, and user education. That's why our platform not only identifies threats but also explains them, helping users understand and make informed decisions about their digital safety.
               </p>
               <div className="flex justify-center mt-8">
-                <Button onClick={() => navigate("/auth")} size="lg">
+                <Button 
+                  onClick={() => navigate("/auth")} 
+                  size="lg" 
+                  className="transform transition-all duration-300 hover:scale-110 hover:shadow-lg active:scale-95 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 px-8 py-6 text-lg"
+                >
                   Join ScamBane Today
                 </Button>
               </div>
@@ -548,32 +553,32 @@ export default function LandingPage() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Features</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">URL Scanning</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">File Analysis</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Image Scanning</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Audio Analysis</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Video Scanning</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">APK Analysis</a></li>
+                <li><a href="#features" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">URL Scanning</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><a href="#features" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">File Analysis</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><a href="#features" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Image Scanning</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><a href="#features" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Audio Analysis</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><a href="#features" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Video Scanning</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><a href="#features" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">APK Analysis</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
               </ul>
             </div>
             
             <div>
               <h3 className="text-lg font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><a href="#about" className="text-foreground/70 hover:text-primary transition-colors">About Us</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Contact</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Terms of Service</a></li>
+                <li><a href="#about" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">About Us</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Contact</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Privacy Policy</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Terms of Service</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
               </ul>
             </div>
             
             <div>
               <h3 className="text-lg font-semibold mb-4">Connect</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Twitter</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">LinkedIn</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">GitHub</a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-colors">Email Us</a></li>
+                <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><Twitter className="h-4 w-4 mr-2 transition-transform duration-300 group-hover:scale-125 group-hover:text-primary" /><span className="transform transition-transform duration-300 group-hover:scale-105">Twitter</span></a></li>
+                <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><Linkedin className="h-4 w-4 mr-2 transition-transform duration-300 group-hover:scale-125 group-hover:text-primary" /><span className="transform transition-transform duration-300 group-hover:scale-105">LinkedIn</span></a></li>
+                <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><Github className="h-4 w-4 mr-2 transition-transform duration-300 group-hover:scale-125 group-hover:text-primary" /><span className="transform transition-transform duration-300 group-hover:scale-105">GitHub</span></a></li>
+                <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><Mail className="h-4 w-4 mr-2 transition-transform duration-300 group-hover:scale-125 group-hover:text-primary" /><span className="transform transition-transform duration-300 group-hover:scale-105">Email Us</span></a></li>
               </ul>
             </div>
           </div>
