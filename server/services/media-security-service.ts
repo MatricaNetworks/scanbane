@@ -6,7 +6,7 @@
  */
 
 import { log } from '../vite';
-import { executePythonScript, saveToTempFile } from './python-services';
+import { executePythonScript, saveToTempFile, pythonMediaAnalysisService } from './python-services';
 import { WebSocket } from 'ws';
 
 export class MediaSecurityService {

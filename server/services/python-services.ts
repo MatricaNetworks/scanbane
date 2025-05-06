@@ -17,7 +17,7 @@ const __dirname = path.dirname(__filename);
 const PYTHON_SERVICES_DIR = path.join(__dirname, '..', 'python_services');
 
 // Helper function to execute Python scripts
-async function executePythonScript(scriptName: string, args: string[] = [], input: Buffer | null = null): Promise<any> {
+export async function executePythonScript(scriptName: string, args: string[] = [], input: Buffer | null = null): Promise<any> {
   return new Promise((resolve, reject) => {
     const scriptPath = path.join(PYTHON_SERVICES_DIR, scriptName);
     
@@ -71,7 +71,7 @@ async function executePythonScript(scriptName: string, args: string[] = [], inpu
 }
 
 // Helper function to save temporary files
-async function saveToTempFile(data: Buffer, extension: string = ''): Promise<string> {
+export async function saveToTempFile(data: Buffer, extension: string = ''): Promise<string> {
   return new Promise((resolve, reject) => {
     const tempDir = os.tmpdir();
     const tempFileName = `scambane_${Date.now()}${extension}`;
@@ -375,7 +375,221 @@ export class PythonImageAnalysisService {
   }
 }
 
+/**
+ * Media Analysis Service (Python implementation for audio and video)
+ */
+export class PythonMediaAnalysisService {
+  /**
+   * Analyzes media (audio/video) files for security threats
+   * @param mediaBuffer Buffer containing the media data
+   * @param fileName Name of the media file
+   * @param mimeType MIME type of the media file
+   */
+  async analyzeMedia(mediaBuffer: Buffer, fileName: string, mimeType?: string): Promise<{
+    isSuspicious: boolean;
+    confidence: number;
+    threatType: string | null;
+    mediaType: string;
+    scanResults: {
+      securityAnalysis: any;
+      metadata?: any;
+      steganography?: any;
+      yara?: any;
+    };
+    securityRecommendations: string[];
+    finalVerdict: string;
+  }> {
+    try {
+      log(`Analyzing media with Python service: ${fileName}`, 'python-media-service');
+      
+      const result = await this.executeMediaSecurity(mediaBuffer, fileName);
+      
+      // Determine if the media is suspicious
+      const isSuspicious = !result.securityStatus?.isSafe;
+      const confidence = this.calculateConfidence(result);
+      const threatType = this.determineThreatType(result);
+      const recommendations = result.securityStatus?.recommendations || [];
+      
+      // Map the Python service result to the expected TypeScript format
+      return {
+        isSuspicious,
+        confidence,
+        threatType,
+        mediaType: result.fileType || this.determineMediaType(fileName, mimeType),
+        scanResults: {
+          securityAnalysis: result.securityStatus,
+          metadata: result.metadata,
+          steganography: result.analysis?.steganography,
+          yara: result.analysis?.yara
+        },
+        securityRecommendations: recommendations,
+        finalVerdict: this.generateVerdict(result, isSuspicious, confidence, threatType)
+      };
+    } catch (error: any) {
+      log(`Error analyzing media with Python service: ${error}`, 'python-media-service');
+      
+      // Return a safe default response
+      return {
+        isSuspicious: false,
+        confidence: 0,
+        threatType: null,
+        mediaType: this.determineMediaType(fileName, mimeType),
+        scanResults: {
+          securityAnalysis: {
+            warnings: [`Analysis failed: ${error?.message || String(error)}`]
+          }
+        },
+        securityRecommendations: [
+          "Exercise caution with this file as security analysis failed",
+          "Sandbox media files before opening them in your main environment",
+          "Strip metadata from media files before sharing",
+          "Disable autoplay in media players for untrusted content"
+        ],
+        finalVerdict: `Analysis failed: ${error?.message || String(error)}`
+      };
+    }
+  }
+  
+  /**
+   * Execute the Python media security script
+   */
+  private async executeMediaSecurity(mediaBuffer: Buffer, fileName: string): Promise<any> {
+    try {
+      // Save the media to a temporary location
+      const tempFilePath = await saveToTempFile(mediaBuffer);
+      
+      // Run the media security service Python script
+      return await executePythonScript('media_security_service.py', [tempFilePath, fileName], mediaBuffer);
+    } catch (error) {
+      log(`Failed to execute media security script: ${error}`, 'python-media-service');
+      throw error;
+    }
+  }
+  
+  /**
+   * Calculate a confidence score based on the analysis results
+   */
+  private calculateConfidence(result: any): number {
+    // Extract threat level
+    const threatLevel = result.securityStatus?.threatLevel || 'none';
+    
+    // Map threat levels to confidence scores
+    const threatLevels: {[key: string]: number} = {
+      'none': 0,
+      'low': 0.3,
+      'medium': 0.6,
+      'high': 0.8,
+      'critical': 0.95,
+      'unknown': 0.5
+    };
+    
+    // Get base confidence from threat level
+    let confidence = threatLevels[threatLevel] || 0;
+    
+    // Adjust based on steganography confidence if available
+    if (result.analysis?.steganography?.confidence) {
+      confidence = Math.max(confidence, result.analysis.steganography.confidence);
+    }
+    
+    // Adjust based on YARA matches if available
+    if (result.analysis?.yara?.matches?.length > 0) {
+      confidence = Math.max(confidence, 0.7);
+    }
+    
+    // Cap at 1.0
+    return Math.min(confidence, 1.0);
+  }
+  
+  /**
+   * Determine the threat type based on all analysis results
+   */
+  private determineThreatType(result: any): string | null {
+    // Check for steganography
+    if (result.analysis?.steganography?.hasSteganography) {
+      return 'steganography';
+    }
+    
+    // Check for suspicious metadata
+    if (result.metadata?.suspicious_fields?.length > 0) {
+      return 'suspicious_metadata';
+    }
+    
+    // Check for unusual codec
+    if (result.analysis?.codecAnalysis?.uncommonCodecDetected) {
+      return 'uncommon_codec';
+    }
+    
+    // Check YARA matches
+    if (result.analysis?.yara?.matches?.length > 0) {
+      // Get the name of the first rule
+      return `yara_match:${result.analysis.yara.matches[0].rule}`;
+    }
+    
+    // No specific threat detected
+    return result.securityStatus?.threatLevel !== 'none' ? 'suspicious' : null;
+  }
+  
+  /**
+   * Determine the media type from file name and MIME type
+   */
+  private determineMediaType(fileName: string, mimeType?: string): string {
+    const ext = fileName.toLowerCase().split('.').pop() || '';
+    
+    // Check MIME type first if available
+    if (mimeType) {
+      if (mimeType.startsWith('audio/')) return 'audio';
+      if (mimeType.startsWith('video/')) return 'video';
+      if (mimeType.startsWith('image/')) return 'image';
+    }
+    
+    // Check extension
+    const audioExts = ['mp3', 'wav', 'ogg', 'flac', 'aac', 'amr'];
+    const videoExts = ['mp4', 'avi', 'mov', 'mkv', 'webm', 'flv', 'wmv', 'm4v'];
+    const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'tiff', 'svg'];
+    
+    if (audioExts.includes(ext)) return 'audio';
+    if (videoExts.includes(ext)) return 'video';
+    if (imageExts.includes(ext)) return 'image';
+    
+    return 'unknown';
+  }
+  
+  /**
+   * Generate a human-readable verdict based on scan results
+   */
+  private generateVerdict(result: any, isSuspicious: boolean, confidence: number, threatType: string | null): string {
+    if (result.error) {
+      return `Analysis failed: ${result.error}`;
+    }
+    
+    const mediaType = result.fileType || 'media file';
+    
+    if (isSuspicious) {
+      const confidenceText = confidence > 0.8 ? 'high' : confidence > 0.5 ? 'moderate' : 'low';
+      let threatText = 'suspicious content';
+      
+      // Customize threat description based on type
+      if (threatType === 'steganography') {
+        threatText = 'hidden data (steganography)';
+      } else if (threatType === 'suspicious_metadata') {
+        threatText = 'suspicious metadata';
+      } else if (threatType === 'uncommon_codec') {
+        threatText = 'uncommon codec usage';
+      } else if (threatType?.startsWith('yara_match:')) {
+        threatText = `potential ${threatType.split(':')[1]} pattern`;
+      }
+      
+      return `This ${mediaType} has been identified as potentially malicious with ${confidenceText} confidence. ` +
+        `It may contain ${threatText}. Exercise caution when handling this file.`;
+    } else {
+      return `No security threats were detected in this ${mediaType}. However, always exercise caution when ` +
+        `opening files from unknown sources.`;
+    }
+  }
+}
+
 // Export singleton instances
 export const pythonUrlAnalysisService = new PythonUrlAnalysisService();
 export const pythonFileAnalysisService = new PythonFileAnalysisService();
 export const pythonImageAnalysisService = new PythonImageAnalysisService();
+export const pythonMediaAnalysisService = new PythonMediaAnalysisService();
