@@ -505,10 +505,10 @@ export default function LandingPage() {
                     
                     {/* Energy flowing along the triangle edges */}
                     <g>
-                      {/* Top to bottom-right energy flow */}
-                      <circle r="4" fill="var(--color-primary)" opacity="0.7">
+                      {/* Top to bottom-left energy flow */}
+                      <circle r="4" fill="#ef4444" opacity="0.7">
                         <animateMotion 
-                          path="M400,100 L650,450" 
+                          path="M400,100 L150,450" 
                           dur="6s" 
                           repeatCount="indefinite" 
                           rotate="auto"
@@ -516,10 +516,10 @@ export default function LandingPage() {
                         <animate attributeName="opacity" values="0;0.7;0" dur="6s" repeatCount="indefinite" />
                       </circle>
                       
-                      {/* Bottom-right to bottom-left energy flow */}
+                      {/* Top to bottom-right energy flow */}
                       <circle r="4" fill="var(--color-secondary)" opacity="0.7">
                         <animateMotion 
-                          path="M650,450 L150,450" 
+                          path="M400,100 L650,450" 
                           dur="8s" 
                           repeatCount="indefinite" 
                           rotate="auto"
@@ -527,10 +527,10 @@ export default function LandingPage() {
                         <animate attributeName="opacity" values="0;0.7;0" dur="8s" repeatCount="indefinite" />
                       </circle>
                       
-                      {/* Bottom-left to top energy flow */}
-                      <circle r="4" fill="#ef4444" opacity="0.7">
+                      {/* Bottom-right to top energy flow */}
+                      <circle r="4" fill="#3b82f6" opacity="0.7">
                         <animateMotion 
-                          path="M150,450 L400,100" 
+                          path="M650,450 L400,100" 
                           dur="7s" 
                           repeatCount="indefinite" 
                           rotate="auto"
@@ -551,20 +551,20 @@ export default function LandingPage() {
                     </circle>
                     
                     {/* Small inner connecting dots at corners */}
-                    <circle cx="400" cy="100" r="4" fill="var(--color-primary)" fillOpacity="0.8" />
+                    <circle cx="400" cy="100" r="4" fill="#ef4444" fillOpacity="0.8" />
                     <circle cx="650" cy="450" r="4" fill="var(--color-secondary)" fillOpacity="0.8" />
-                    <circle cx="150" cy="450" r="4" fill="#ef4444" fillOpacity="0.8" />
+                    <circle cx="150" cy="450" r="4" fill="#3b82f6" fillOpacity="0.8" />
                   </svg>
                   
                   {/* Node 1 - Top of Triangle */}
                   <div className="absolute top-[15%] left-1/2 transform -translate-x-1/2 z-10">
                     <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
-                      <div className="rounded-full bg-gradient-to-br from-primary/30 to-primary/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-primary/40 hover:to-primary/20 shadow-[0_0_15px_rgba(var(--color-primary-rgb),0.3)] border border-primary/20 backdrop-blur-sm hover:rotate-12">
-                        <Shield className="h-12 w-12 text-primary transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
+                      <div className="rounded-full bg-gradient-to-br from-red-500/30 to-red-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-red-500/40 hover:to-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.3)] border border-red-500/20 backdrop-blur-sm hover:rotate-12">
+                        <Shield className="h-12 w-12 text-red-500 dark:text-red-400 transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
                       </div>
-                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
-                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary bg-clip-text">Automatic Interception</h3>
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-red-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
+                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-red-500 dark:group-hover:text-red-400 bg-clip-text">Automatic Interception</h3>
                       </div>
                     </div>
                   </div>
@@ -585,12 +585,12 @@ export default function LandingPage() {
                   {/* Node 3 - Bottom Right Corner of Triangle */}
                   <div className="absolute bottom-[15%] right-[15%] z-10">
                     <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
-                      <div className="rounded-full bg-gradient-to-br from-red-500/30 to-red-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-red-500/40 hover:to-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.3)] border border-red-500/20 backdrop-blur-sm hover:-rotate-12">
-                        <ShieldCheck className="h-12 w-12 text-red-500 dark:text-red-400 transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
+                      <div className="rounded-full bg-gradient-to-br from-blue-500/30 to-blue-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-blue-500/40 hover:to-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.3)] border border-blue-500/20 backdrop-blur-sm hover:-rotate-12">
+                        <ShieldCheck className="h-12 w-12 text-blue-500 dark:text-blue-400 transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
                       </div>
-                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-red-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
-                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-red-500 dark:group-hover:text-red-400 bg-clip-text">Safe Access & Reporting</h3>
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-blue-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
+                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-blue-500 dark:group-hover:text-blue-400 bg-clip-text">Safe Access & Reporting</h3>
                       </div>
                     </div>
                   </div>
@@ -600,7 +600,7 @@ export default function LandingPage() {
                     <div className="relative">
                       {/* Outer ring with rotating gradient effect */}
                       <div className="absolute inset-0 rounded-full border-4 border-transparent p-1 animate-[spin_30s_linear_infinite]">
-                        <div className="w-full h-full rounded-full bg-gradient-to-r from-primary via-secondary to-red-500 opacity-30"></div>
+                        <div className="w-full h-full rounded-full bg-gradient-to-r from-red-500 via-secondary to-blue-500 opacity-30"></div>
                       </div>
                       
                       {/* Inner glowing core */}
@@ -638,8 +638,8 @@ export default function LandingPage() {
             <div className="md:hidden space-y-8 mt-8">
               <div className="bg-card border border-border p-6 rounded-xl shadow-sm transform transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98">
                 <div className="flex flex-col items-center text-center">
-                  <div className="rounded-full bg-primary/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-primary/40">
-                    <Shield className="h-8 w-8 text-primary" />
+                  <div className="rounded-full bg-red-500/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-red-500/40">
+                    <Shield className="h-8 w-8 text-red-500 dark:text-red-400" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Automatic Interception</h3>
                 </div>
@@ -656,8 +656,8 @@ export default function LandingPage() {
               
               <div className="bg-card border border-border p-6 rounded-xl shadow-sm transform transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98">
                 <div className="flex flex-col items-center text-center">
-                  <div className="rounded-full bg-red-500/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-red-500/40">
-                    <ShieldCheck className="h-8 w-8 text-red-500 dark:text-red-400" />
+                  <div className="rounded-full bg-blue-500/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-blue-500/40">
+                    <ShieldCheck className="h-8 w-8 text-blue-500 dark:text-blue-400" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Safe Access & Reporting</h3>
                 </div>
