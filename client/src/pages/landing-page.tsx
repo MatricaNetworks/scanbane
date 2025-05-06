@@ -150,7 +150,7 @@ export default function LandingPage() {
                   <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">for the Digital Age</span>
                 </h1>
                 <p className="text-xl text-foreground/70 max-w-md">
-                  Protect yourself from online threats with our comprehensive platform. Scan and analyze URLs, files, images, audio, and video for malware, phishing, and hidden steganography threats.
+                  Protect yourself from online threats with our comprehensive platform. Scan, analyze, and block malicious URLs, files, images, audio, and video containing malware, phishing, and hidden steganography threats.
                 </p>
                 <div className="flex items-center space-x-4 pt-4">
                   <Button size="lg" onClick={() => navigate("/auth")}>
@@ -159,16 +159,6 @@ export default function LandingPage() {
                   <Button size="lg" variant="outline" onClick={() => navigate("/auth")}>
                     Learn More
                   </Button>
-                </div>
-                <div className="flex items-center space-x-4 pt-2">
-                  <div className="flex -space-x-2">
-                    {[...Array(4)].map((_, i) => (
-                      <div key={i} className="w-8 h-8 rounded-full bg-primary/10 border-2 border-background" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-foreground/70">
-                    Trusted by <span className="font-bold">10,000+</span> users
-                  </p>
                 </div>
               </div>
               <div className="relative rounded-xl overflow-hidden border border-border/40 shadow-xl">
@@ -964,8 +954,8 @@ export default function LandingPage() {
               <ul className="space-y-2">
                 <li><a href="#about" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">About Us</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
                 <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Contact</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Privacy Policy</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
-                <li><a href="#" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Terms of Service</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></a></li>
+                <li><Link href="/privacy-policy" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Privacy Policy</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></Link></li>
+                <li><Link href="/terms-of-service" className="text-foreground/70 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-flex items-center group"><span className="transform transition-transform duration-300 group-hover:scale-105">Terms of Service</span><ArrowRight className="ml-1 h-0 w-0 opacity-0 group-hover:h-4 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" /></Link></li>
               </ul>
             </div>
             

@@ -9,6 +9,8 @@ import HistoryPage from "@/pages/history-page";
 import DownloadPage from "@/pages/download-page";
 import LandingPage from "@/pages/landing-page";
 import AdminDashboard from "@/pages/admin-dashboard";
+import PrivacyPolicy from "@/pages/privacy-policy";
+import TermsOfService from "@/pages/terms-of-service";
 import { ProtectedRoute } from "./lib/protected-route";
 import { ThemeProvider } from "./lib/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
@@ -28,6 +30,8 @@ function Router() {
       <ProtectedRoute path="/history" component={HistoryPage} />
       <ProtectedRoute path="/admin" component={AdminDashboard} requireAdmin={true} />
       <Route path="/download" component={DownloadPage} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
       <Route component={NotFound} />
     </Switch>
   );
