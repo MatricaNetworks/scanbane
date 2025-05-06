@@ -370,26 +370,26 @@ export default function LandingPage() {
                       {/* Dynamic gradient for the triangle edges */}
                       <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="var(--color-primary)">
-                          <animate attributeName="stop-color" values="var(--color-primary);var(--color-secondary);#22c55e;var(--color-primary)" dur="12s" repeatCount="indefinite" />
+                          <animate attributeName="stop-color" values="var(--color-primary);var(--color-secondary);#ef4444;var(--color-primary)" dur="12s" repeatCount="indefinite" />
                         </stop>
                         <stop offset="50%" stopColor="var(--color-secondary)">
-                          <animate attributeName="stop-color" values="var(--color-secondary);#22c55e;var(--color-primary);var(--color-secondary)" dur="12s" repeatCount="indefinite" />
+                          <animate attributeName="stop-color" values="var(--color-secondary);#ef4444;var(--color-primary);var(--color-secondary)" dur="12s" repeatCount="indefinite" />
                         </stop>
-                        <stop offset="100%" stopColor="#22c55e">
-                          <animate attributeName="stop-color" values="#22c55e;var(--color-primary);var(--color-secondary);#22c55e" dur="12s" repeatCount="indefinite" />
+                        <stop offset="100%" stopColor="#ef4444">
+                          <animate attributeName="stop-color" values="#ef4444;var(--color-primary);var(--color-secondary);#ef4444" dur="12s" repeatCount="indefinite" />
                         </stop>
                       </linearGradient>
                       
                       {/* Animated inner fill gradient */}
                       <linearGradient id="inner-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="var(--color-primary)">
-                          <animate attributeName="stop-color" values="var(--color-primary);var(--color-secondary);#22c55e;var(--color-primary)" dur="18s" repeatCount="indefinite" />
+                          <animate attributeName="stop-color" values="var(--color-primary);var(--color-secondary);#ef4444;var(--color-primary)" dur="18s" repeatCount="indefinite" />
                         </stop>
                         <stop offset="50%" stopColor="var(--color-secondary)">
-                          <animate attributeName="stop-color" values="var(--color-secondary);#22c55e;var(--color-primary);var(--color-secondary)" dur="18s" repeatCount="indefinite" />
+                          <animate attributeName="stop-color" values="var(--color-secondary);#ef4444;var(--color-primary);var(--color-secondary)" dur="18s" repeatCount="indefinite" />
                         </stop>
-                        <stop offset="100%" stopColor="#22c55e">
-                          <animate attributeName="stop-color" values="#22c55e;var(--color-primary);var(--color-secondary);#22c55e" dur="18s" repeatCount="indefinite" />
+                        <stop offset="100%" stopColor="#ef4444">
+                          <animate attributeName="stop-color" values="#ef4444;var(--color-primary);var(--color-secondary);#ef4444" dur="18s" repeatCount="indefinite" />
                         </stop>
                       </linearGradient>
                       
@@ -415,10 +415,10 @@ export default function LandingPage() {
                       </radialGradient>
                       
                       <radialGradient id="cornerPulse3" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="#22c55e">
+                        <stop offset="0%" stopColor="#ef4444">
                           <animate attributeName="stop-opacity" values="0.9;0.4;0.9" dur="5s" repeatCount="indefinite" />
                         </stop>
-                        <stop offset="100%" stopColor="#22c55e" stopOpacity="0" />
+                        <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
                       </radialGradient>
                     </defs>
                     
@@ -437,7 +437,7 @@ export default function LandingPage() {
                         <animate attributeName="cy" values="350;340;360;350" dur="15s" repeatCount="indefinite" />
                         <animate attributeName="cx" values="450;460;440;450" dur="20s" repeatCount="indefinite" />
                       </circle>
-                      <circle cx="300" cy="350" r="5" fill="#22c55e">
+                      <circle cx="300" cy="350" r="5" fill="#ef4444">
                         <animate attributeName="cy" values="350;360;340;350" dur="18s" repeatCount="indefinite" />
                         <animate attributeName="cx" values="300;290;310;300" dur="23s" repeatCount="indefinite" />
                       </circle>
@@ -493,7 +493,7 @@ export default function LandingPage() {
                       {/* Center to bottom-left line */}
                       <line 
                         x1="400" y1="300" x2="150" y2="450" 
-                        stroke="#22c55e" 
+                        stroke="#ef4444" 
                         strokeWidth="1.5" 
                         strokeDasharray="5,5"
                         strokeOpacity="0.6"
@@ -528,7 +528,7 @@ export default function LandingPage() {
                       </circle>
                       
                       {/* Bottom-left to top energy flow */}
-                      <circle r="4" fill="#22c55e" opacity="0.7">
+                      <circle r="4" fill="#ef4444" opacity="0.7">
                         <animateMotion 
                           path="M150,450 L400,100" 
                           dur="7s" 
@@ -553,7 +553,7 @@ export default function LandingPage() {
                     {/* Small inner connecting dots at corners */}
                     <circle cx="400" cy="100" r="4" fill="var(--color-primary)" fillOpacity="0.8" />
                     <circle cx="650" cy="450" r="4" fill="var(--color-secondary)" fillOpacity="0.8" />
-                    <circle cx="150" cy="450" r="4" fill="#22c55e" fillOpacity="0.8" />
+                    <circle cx="150" cy="450" r="4" fill="#ef4444" fillOpacity="0.8" />
                   </svg>
                   
                   {/* Node 1 - Top of Triangle */}
@@ -585,12 +585,12 @@ export default function LandingPage() {
                   {/* Node 3 - Bottom Right Corner of Triangle */}
                   <div className="absolute bottom-[15%] right-[15%] z-10">
                     <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
-                      <div className="rounded-full bg-gradient-to-br from-green-500/30 to-green-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-green-500/40 hover:to-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.3)] border border-green-500/20 backdrop-blur-sm hover:-rotate-12">
-                        <ShieldCheck className="h-12 w-12 text-green-500 transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
+                      <div className="rounded-full bg-gradient-to-br from-red-500/30 to-red-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-red-500/40 hover:to-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.3)] border border-red-500/20 backdrop-blur-sm hover:-rotate-12">
+                        <ShieldCheck className="h-12 w-12 text-red-500 dark:text-red-400 transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
                       </div>
-                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-green-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
-                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-green-500 bg-clip-text">Safe Access & Reporting</h3>
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-red-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
+                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-red-500 dark:group-hover:text-red-400 bg-clip-text">Safe Access & Reporting</h3>
                       </div>
                     </div>
                   </div>
@@ -600,7 +600,7 @@ export default function LandingPage() {
                     <div className="relative">
                       {/* Outer ring with rotating gradient effect */}
                       <div className="absolute inset-0 rounded-full border-4 border-transparent p-1 animate-[spin_30s_linear_infinite]">
-                        <div className="w-full h-full rounded-full bg-gradient-to-r from-primary via-secondary to-green-500 opacity-30"></div>
+                        <div className="w-full h-full rounded-full bg-gradient-to-r from-primary via-secondary to-red-500 opacity-30"></div>
                       </div>
                       
                       {/* Inner glowing core */}
@@ -613,7 +613,7 @@ export default function LandingPage() {
                           <div className="w-[200%] h-[200%] absolute -top-1/2 -left-1/2 animate-[spin_15s_linear_infinite]">
                             <div className="w-full h-2 bg-primary absolute top-1/2 left-0 blur-sm"></div>
                             <div className="w-full h-2 bg-secondary absolute top-1/2 left-0 rotate-60 blur-sm"></div>
-                            <div className="w-full h-2 bg-green-500 absolute top-1/2 left-0 rotate-120 blur-sm"></div>
+                            <div className="w-full h-2 bg-red-500 absolute top-1/2 left-0 rotate-120 blur-sm"></div>
                           </div>
                         </div>
                         
@@ -656,8 +656,8 @@ export default function LandingPage() {
               
               <div className="bg-card border border-border p-6 rounded-xl shadow-sm transform transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98">
                 <div className="flex flex-col items-center text-center">
-                  <div className="rounded-full bg-green-500/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-green-500/40">
-                    <ShieldCheck className="h-8 w-8 text-green-500" />
+                  <div className="rounded-full bg-red-500/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-red-500/40">
+                    <ShieldCheck className="h-8 w-8 text-red-500 dark:text-red-400" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Safe Access & Reporting</h3>
                 </div>
