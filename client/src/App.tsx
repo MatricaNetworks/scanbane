@@ -23,7 +23,7 @@ function Router() {
       <ProtectedRoute path="/file-scan" component={FileScanPage} />
       <ProtectedRoute path="/image-scan" component={ImageScanPage} />
       <ProtectedRoute path="/history" component={HistoryPage} />
-      <ProtectedRoute path="/admin" component={AdminDashboard} />
+      <ProtectedRoute path="/admin" component={AdminDashboard} requireAdmin={true} />
       <Route path="/download" component={DownloadPage} />
       <Route component={NotFound} />
     </Switch>

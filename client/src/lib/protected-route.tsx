@@ -1,22 +1,55 @@
-import { Loader2 } from "lucide-react";
-import { Redirect, Route } from "wouter";
+import { Loader2, AlertCircle } from "lucide-react";
+import { Redirect, Route, useLocation } from "wouter";
+import { useAuth } from "@/hooks/use-auth";
+import { useToast } from "@/hooks/use-toast";
 
-// Simplified ProtectedRoute that doesn't rely on AuthContext
 export function ProtectedRoute({
   path,
   component: Component,
+  requireAdmin = false,
 }: {
   path: string;
   component: () => React.JSX.Element;
+  requireAdmin?: boolean;
 }) {
-  // For demo purposes, assume user is always authenticated for now
-  // In a production environment, this would check authentication status
-  const isAuthenticated = true; // Hard-coded for demo
+  const { user, isLoading } = useAuth();
+  const { toast } = useToast();
+  const [location] = useLocation();
   
-  if (!isAuthenticated) {
+  // Show loading state while checking authentication
+  if (isLoading) {
+    return (
+      <Route path={path}>
+        <div className="flex items-center justify-center min-h-screen">
+          <Loader2 className="h-8 w-8 animate-spin text-border" />
+        </div>
+      </Route>
+    );
+  }
+
+  // Redirect to auth page if not authenticated
+  if (!user) {
     return (
       <Route path={path}>
         <Redirect to="/auth" />
+      </Route>
+    );
+  }
+
+  // Check for admin access if required
+  if (requireAdmin && user.role !== 'admin') {
+    // Show toast only when directly accessing the page
+    if (location === path) {
+      toast({
+        title: "Access Denied",
+        description: "You don't have permission to access this area.",
+        variant: "destructive"
+      });
+    }
+    
+    return (
+      <Route path={path}>
+        <Redirect to="/dashboard" />
       </Route>
     );
   }
