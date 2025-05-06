@@ -1,4 +1,3 @@
-import { useAuth } from "@/hooks/use-auth";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -17,7 +16,13 @@ import {
 } from "lucide-react";
 
 export function Sidebar() {
-  const { user, logoutMutation } = useAuth();
+  // Mock user data for demo purposes
+  const user = {
+    id: 1,
+    username: "demo",
+    subscriptionTier: "free",
+    scansUsed: 1
+  };
   const [location] = useLocation();
   const isMobile = useMobile();
   
@@ -103,14 +108,15 @@ export function Sidebar() {
             </p>
           </div>
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full hover:bg-gray-700"
-          onClick={() => logoutMutation.mutate()}
-        >
-          <LogOut className="h-5 w-5 text-gray-400" />
-        </Button>
+        <Link href="/auth">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full hover:bg-gray-700"
+          >
+            <LogOut className="h-5 w-5 text-gray-400" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

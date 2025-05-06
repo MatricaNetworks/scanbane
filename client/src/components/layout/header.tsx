@@ -1,4 +1,3 @@
-import { useAuth } from "@/hooks/use-auth";
 import { useMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { 
@@ -36,7 +35,13 @@ interface HeaderProps {
 }
 
 export function Header({ title }: HeaderProps) {
-  const { user, logoutMutation } = useAuth();
+  // Mock user data for demo purposes
+  const user = {
+    id: 1,
+    username: "demo",
+    subscriptionTier: "free",
+    scansUsed: 1
+  };
   const isMobile = useMobile();
   const [location] = useLocation();
 

@@ -1,4 +1,3 @@
-import { useAuth } from "@/hooks/use-auth";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
@@ -25,16 +24,51 @@ import {
 } from "lucide-react";
 
 export default function HomePage() {
-  const { user } = useAuth();
+  // Mock user data for demo purposes
+  const user = {
+    id: 1,
+    username: "demo",
+    subscriptionTier: "free",
+    scansUsed: 1
+  };
+  
   const [upgradeOpen, setUpgradeOpen] = useState(false);
   const [scanResultOpen, setScanResultOpen] = useState(false);
   const [scanResult, setScanResult] = useState<any>(null);
 
-  // Query recent scans
-  const { data: recentScans } = useQuery({
-    queryKey: ["/api/scan/history"],
-    staleTime: 60000 // 1 minute
-  });
+  // Mock recent scans for demo
+  const recentScans = [
+    {
+      id: 1,
+      userId: 1,
+      scanType: "url",
+      targetName: "https://example-phishing.com",
+      result: "malicious",
+      threatType: "phishing",
+      createdAt: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
+      details: { confidence: 95 }
+    },
+    {
+      id: 2,
+      userId: 1,
+      scanType: "file",
+      targetName: "suspicious_file.exe",
+      result: "suspicious",
+      threatType: "potential malware",
+      createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
+      details: { confidence: 75 }
+    },
+    {
+      id: 3,
+      userId: 1,
+      scanType: "image",
+      targetName: "photo.jpg",
+      result: "safe",
+      threatType: null,
+      createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
+      details: { confidence: 98 }
+    }
+  ];
 
   const handleUrlSubmit = async (url: string) => {
     // This would be handled by the URL scan page

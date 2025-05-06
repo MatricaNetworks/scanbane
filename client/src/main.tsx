@@ -6,6 +6,7 @@ import { queryClient } from "./lib/queryClient";
 import { AuthProvider } from "./hooks/use-auth";
 import { Toaster } from "@/components/ui/toaster";
 
+// Ensure proper nesting of providers
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
