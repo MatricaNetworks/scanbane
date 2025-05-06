@@ -5,7 +5,8 @@ import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { 
   Shield, ShieldCheck, ShieldAlert, Globe, FileText, Image, 
   Smartphone, ArrowRight, Menu, X, Music, Video,
-  Twitter, Linkedin, Github, Mail
+  Twitter, Linkedin, Github, Mail, Download, Search,
+  Apple, CheckCircle, Laptop
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -329,6 +330,50 @@ export default function LandingPage() {
               <p className="text-foreground/70">
                 Our security triad ensures comprehensive protection by automatically intercepting and analyzing all digital content before allowing access
               </p>
+            </div>
+            
+            {/* Step by Step Process */}
+            <div className="max-w-5xl mx-auto mb-16">
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="bg-card border border-border rounded-xl p-6 shadow-sm relative group transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-98 hover:border-primary/30">
+                  <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-primary/90 flex items-center justify-center font-bold text-white z-10 shadow-lg border-2 border-background group-hover:scale-110 transition-transform duration-300">1</div>
+                  <div className="h-full flex flex-col">
+                    <div className="rounded-full w-16 h-16 bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <ShieldAlert className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">Interception</h3>
+                    <p className="text-foreground/70 flex-grow">
+                      ScamBane intercepts all content including URLs, files, images, audio, and video before they reach your device.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="bg-card border border-border rounded-xl p-6 shadow-sm relative group transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-98 hover:border-secondary/30 mt-6 md:mt-0">
+                  <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-secondary/90 flex items-center justify-center font-bold text-white z-10 shadow-lg border-2 border-background group-hover:scale-110 transition-transform duration-300">2</div>
+                  <div className="h-full flex flex-col">
+                    <div className="rounded-full w-16 h-16 bg-secondary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Search className="h-8 w-8 text-secondary" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-secondary">Analysis</h3>
+                    <p className="text-foreground/70 flex-grow">
+                      Multi-layered scanning uses advanced detection techniques including AI to find malware, phishing, and hidden steganography.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="bg-card border border-border rounded-xl p-6 shadow-sm relative group transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-98 hover:border-green-500/30 mt-12 md:mt-0">
+                  <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-green-500/90 flex items-center justify-center font-bold text-white z-10 shadow-lg border-2 border-background group-hover:scale-110 transition-transform duration-300">3</div>
+                  <div className="h-full flex flex-col">
+                    <div className="rounded-full w-16 h-16 bg-green-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <ShieldCheck className="h-8 w-8 text-green-500" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-green-500">Protection</h3>
+                    <p className="text-foreground/70 flex-grow">
+                      Safe content is allowed through while threats are blocked. You receive detailed reports on detected dangers.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
             
             <div className="hidden md:flex justify-center mb-12">
