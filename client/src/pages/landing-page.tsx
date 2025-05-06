@@ -146,12 +146,11 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="flex flex-col space-y-6">
                 <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                  <span className="block">Advanced</span>
-                  <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Security Scanning</span>
-                  <span className="block">for the Digital Age</span>
+                  <span className="block">Advanced Security</span>
+                  <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">for the Digital Age</span>
                 </h1>
                 <p className="text-xl text-foreground/70 max-w-md">
-                  Protect yourself from online threats with our comprehensive security platform. Scan URLs, files, images, audio, and video for malware, phishing, and hidden steganography threats.
+                  Protect yourself from online threats with our comprehensive platform. Scan and analyze URLs, files, images, audio, and video for malware, phishing, and hidden steganography threats.
                 </p>
                 <div className="flex items-center space-x-4 pt-4">
                   <Button size="lg" onClick={() => navigate("/auth")}>
@@ -827,7 +826,7 @@ export default function LandingPage() {
                 Founded by a team of cybersecurity experts, ScamBane combines multiple threat intelligence sources with artificial intelligence to detect and analyze potential security risks before they can harm you.
               </p>
               <p className="text-foreground/70 mb-6">
-                We believe in transparency, privacy, and user education. That's why our platform not only identifies threats but also explains them, helping users understand and make informed decisions about their digital safety.
+                We believe in transparency, privacy, and user education. That's why our platform not only identifies threats but also explains them, helping users understand and make informed decisions about your digital safety.
               </p>
               <div className="flex justify-center mt-8">
                 <Button 
@@ -943,7 +942,7 @@ export default function LandingPage() {
                 <span className="text-xl font-bold">ScamBane</span>
               </div>
               <p className="text-foreground/70 mb-4">
-                Advanced security scanning for the digital age.
+                Advanced security for the digital age.
               </p>
             </div>
             
