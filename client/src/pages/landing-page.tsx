@@ -173,48 +173,48 @@ export default function LandingPage() {
                     </div>
                     <div className="space-y-4">
                       <div className="space-y-2">
-                        <div className="bg-background/50 rounded-md p-4 flex items-center">
-                          <Globe className="h-5 w-5 text-primary mr-3" />
+                        <div className="bg-background/50 rounded-md p-4 flex items-center group hover:scale-102 transition-all duration-300 cursor-pointer">
+                          <Globe className="h-5 w-5 text-red-500 mr-3 group-hover:animate-pulse" />
                           <div className="flex-1">
                             <p className="text-sm font-medium">URL Scanner</p>
-                            <div className="h-2 bg-primary/10 rounded-full mt-1">
-                              <div className="h-2 bg-primary rounded-full w-2/3" />
+                            <div className="h-2 bg-red-200 dark:bg-red-950/30 rounded-full mt-1 overflow-hidden">
+                              <div className="h-2 bg-gradient-to-r from-red-500 to-red-600 rounded-full w-2/3 animate-pulse" />
                             </div>
                           </div>
                         </div>
-                        <div className="bg-background/50 rounded-md p-4 flex items-center">
-                          <FileText className="h-5 w-5 text-secondary mr-3" />
+                        <div className="bg-background/50 rounded-md p-4 flex items-center group hover:scale-102 transition-all duration-300 cursor-pointer">
+                          <FileText className="h-5 w-5 text-green-500 mr-3 group-hover:animate-pulse" />
                           <div className="flex-1">
                             <p className="text-sm font-medium">File Analysis</p>
-                            <div className="h-2 bg-secondary/10 rounded-full mt-1">
-                              <div className="h-2 bg-secondary rounded-full w-1/2" />
+                            <div className="h-2 bg-green-200 dark:bg-green-950/30 rounded-full mt-1 overflow-hidden">
+                              <div className="h-2 bg-gradient-to-r from-green-500 to-green-600 rounded-full w-1/2 animate-pulse" />
                             </div>
                           </div>
                         </div>
-                        <div className="bg-background/50 rounded-md p-4 flex items-center">
-                          <Image className="h-5 w-5 text-primary mr-3" />
+                        <div className="bg-background/50 rounded-md p-4 flex items-center group hover:scale-102 transition-all duration-300 cursor-pointer">
+                          <Image className="h-5 w-5 text-blue-500 mr-3 group-hover:animate-pulse" />
                           <div className="flex-1">
                             <p className="text-sm font-medium">Image Steganography Detection</p>
-                            <div className="h-2 bg-primary/10 rounded-full mt-1">
-                              <div className="h-2 bg-primary rounded-full w-4/5" />
+                            <div className="h-2 bg-blue-200 dark:bg-blue-950/30 rounded-full mt-1 overflow-hidden">
+                              <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full w-4/5 animate-pulse" />
                             </div>
                           </div>
                         </div>
-                        <div className="bg-background/50 rounded-md p-4 flex items-center">
-                          <Music className="h-5 w-5 text-secondary mr-3" />
+                        <div className="bg-background/50 rounded-md p-4 flex items-center group hover:scale-102 transition-all duration-300 cursor-pointer">
+                          <Music className="h-5 w-5 text-yellow-500 mr-3 group-hover:animate-pulse" />
                           <div className="flex-1">
                             <p className="text-sm font-medium">Audio Analysis</p>
-                            <div className="h-2 bg-secondary/10 rounded-full mt-1">
-                              <div className="h-2 bg-secondary rounded-full w-3/5" />
+                            <div className="h-2 bg-yellow-200 dark:bg-yellow-950/30 rounded-full mt-1 overflow-hidden">
+                              <div className="h-2 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full w-3/5 animate-pulse" />
                             </div>
                           </div>
                         </div>
-                        <div className="bg-background/50 rounded-md p-4 flex items-center">
-                          <Video className="h-5 w-5 text-primary mr-3" />
+                        <div className="bg-background/50 rounded-md p-4 flex items-center group hover:scale-102 transition-all duration-300 cursor-pointer">
+                          <Video className="h-5 w-5 text-gray-700 dark:text-white mr-3 group-hover:animate-pulse" />
                           <div className="flex-1">
                             <p className="text-sm font-medium">Video Security Scanner</p>
-                            <div className="h-2 bg-primary/10 rounded-full mt-1">
-                              <div className="h-2 bg-primary rounded-full w-2/5" />
+                            <div className="h-2 bg-gray-200 dark:bg-gray-600/30 rounded-full mt-1 overflow-hidden">
+                              <div className="h-2 bg-gradient-to-r from-gray-700 to-gray-800 dark:from-white dark:to-gray-200 rounded-full w-2/5 animate-pulse" />
                             </div>
                           </div>
                         </div>
@@ -327,45 +327,124 @@ export default function LandingPage() {
             <div className="text-center max-w-2xl mx-auto mb-16">
               <h2 className="text-3xl font-bold mb-4">How ScamBane Works</h2>
               <p className="text-foreground/70">
-                Our multi-layered approach ensures comprehensive protection by automatically intercepting and analyzing all digital content before allowing access
+                Our security triad ensures comprehensive protection by automatically intercepting and analyzing all digital content before allowing access
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8 md:gap-4">
-              <div className="flex flex-col items-center text-center p-6 transform transition-all duration-300 hover:scale-105 rounded-xl hover:bg-card hover:shadow-md active:scale-95 cursor-pointer">
-                <div className="relative">
-                  <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110 hover:bg-primary/20">
-                    <span className="text-2xl font-bold text-primary">1</span>
+            <div className="hidden md:flex justify-center mb-12">
+              <div className="relative w-full max-w-2xl aspect-square">
+                {/* Triangle Container */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {/* Triangle SVG */}
+                  <svg viewBox="0 0 400 400" className="w-full h-full">
+                    {/* Triangle Outline */}
+                    <path 
+                      d="M200,20 L350,320 L50,320 Z" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      className="text-foreground/20"
+                      strokeDasharray="5,5"
+                    />
+                    
+                    {/* Connecting Lines */}
+                    <line x1="200" y1="20" x2="200" y2="320" stroke="currentColor" strokeWidth="1" className="text-foreground/10" strokeDasharray="5,5" />
+                    <line x1="50" y1="320" x2="350" y2="320" stroke="currentColor" strokeWidth="1" className="text-foreground/10" strokeDasharray="5,5" />
+                    <line x1="200" y1="20" x2="350" y2="320" stroke="currentColor" strokeWidth="1" className="text-foreground/10" strokeDasharray="5,5" />
+                    <line x1="200" y1="20" x2="50" y2="320" stroke="currentColor" strokeWidth="1" className="text-foreground/10" strokeDasharray="5,5" />
+                  </svg>
+                  
+                  {/* Node 1 - Top */}
+                  <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+                    <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-110">
+                      <div className="rounded-full bg-primary/20 w-20 h-20 flex items-center justify-center mb-2 transition-transform duration-300 hover:scale-110 hover:bg-primary/40 shadow-md border border-primary/20">
+                        <Shield className="h-10 w-10 text-primary transition-all duration-300 group-hover:scale-125" />
+                      </div>
+                      <div className="bg-card p-3 rounded-lg shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20 min-w-[160px] text-center">
+                        <h3 className="text-lg font-semibold mb-1 transition-colors duration-300 group-hover:text-primary">Automatic Interception</h3>
+                        <p className="text-foreground/70 text-sm">
+                          All content is intercepted before reaching your device
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-primary/30" />
+                  
+                  {/* Node 2 - Bottom Left */}
+                  <div className="absolute bottom-12 left-12 z-10">
+                    <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-110">
+                      <div className="rounded-full bg-secondary/20 w-20 h-20 flex items-center justify-center mb-2 transition-transform duration-300 hover:scale-110 hover:bg-secondary/40 shadow-md border border-secondary/20">
+                        <ShieldAlert className="h-10 w-10 text-secondary transition-all duration-300 group-hover:scale-125" />
+                      </div>
+                      <div className="bg-card p-3 rounded-lg shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-secondary/20 min-w-[160px] text-center">
+                        <h3 className="text-lg font-semibold mb-1 transition-colors duration-300 group-hover:text-secondary">Intelligent Analysis</h3>
+                        <p className="text-foreground/70 text-sm">
+                          Multi-layered detection of all threats including steganography
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Node 3 - Bottom Right */}
+                  <div className="absolute bottom-12 right-12 z-10">
+                    <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-110">
+                      <div className="rounded-full bg-green-500/20 w-20 h-20 flex items-center justify-center mb-2 transition-transform duration-300 hover:scale-110 hover:bg-green-500/40 shadow-md border border-green-500/20">
+                        <ShieldCheck className="h-10 w-10 text-green-500 transition-all duration-300 group-hover:scale-125" />
+                      </div>
+                      <div className="bg-card p-3 rounded-lg shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-green-500/20 min-w-[160px] text-center">
+                        <h3 className="text-lg font-semibold mb-1 transition-colors duration-300 group-hover:text-green-500">Safe Access & Reporting</h3>
+                        <p className="text-foreground/70 text-sm">
+                          Safe content is allowed while threats are blocked with reports
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Center Text */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                    <div className="bg-background/80 backdrop-blur-sm rounded-full p-3 shadow-lg border border-border flex items-center justify-center w-24 h-24 transition-all duration-500 hover:scale-110 hover:shadow-xl">
+                      <span className="text-lg font-bold bg-gradient-to-r from-primary via-secondary to-green-500 bg-clip-text text-transparent">ScamBane<br/>Triad</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">Automatic Interception</h3>
-                <p className="text-foreground/70">
-                  ScamBane intercepts all content—URLs, images, files, audio, and video—before they reach you, providing proactive protection.
-                </p>
+              </div>
+            </div>
+            
+            {/* Mobile Alternative for Triangle */}
+            <div className="md:hidden space-y-8 mt-8">
+              <div className="bg-card border border-border p-6 rounded-xl shadow-sm transform transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98">
+                <div className="flex flex-col items-center text-center">
+                  <div className="rounded-full bg-primary/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-primary/40">
+                    <Shield className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Automatic Interception</h3>
+                  <p className="text-foreground/70">
+                    ScamBane intercepts all content—URLs, images, files, audio, and video—before they reach you, providing proactive protection.
+                  </p>
+                </div>
               </div>
               
-              <div className="flex flex-col items-center text-center p-6 transform transition-all duration-300 hover:scale-105 rounded-xl hover:bg-card hover:shadow-md active:scale-95 cursor-pointer">
-                <div className="relative">
-                  <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110 hover:bg-primary/20">
-                    <span className="text-2xl font-bold text-primary">2</span>
+              <div className="bg-card border border-border p-6 rounded-xl shadow-sm transform transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98">
+                <div className="flex flex-col items-center text-center">
+                  <div className="rounded-full bg-secondary/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-secondary/40">
+                    <ShieldAlert className="h-8 w-8 text-secondary" />
                   </div>
-                  <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-primary/30" />
+                  <h3 className="text-xl font-semibold mb-2">Intelligent Analysis</h3>
+                  <p className="text-foreground/70">
+                    Content is analyzed using multi-layered detection including steganography analysis in images, audio, and video files to find hidden threats.
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">Intelligent Analysis</h3>
-                <p className="text-foreground/70">
-                  Content is analyzed using multi-layered detection including steganography analysis in images, audio, and video files to find hidden threats.
-                </p>
               </div>
               
-              <div className="flex flex-col items-center text-center p-6 transform transition-all duration-300 hover:scale-105 rounded-xl hover:bg-card hover:shadow-md active:scale-95 cursor-pointer">
-                <div className="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110 hover:bg-primary/20">
-                  <span className="text-2xl font-bold text-primary">3</span>
+              <div className="bg-card border border-border p-6 rounded-xl shadow-sm transform transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98">
+                <div className="flex flex-col items-center text-center">
+                  <div className="rounded-full bg-green-500/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-green-500/40">
+                    <ShieldCheck className="h-8 w-8 text-green-500" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Safe Access & Reporting</h3>
+                  <p className="text-foreground/70">
+                    Safe content is allowed through while dangerous items are blocked. You receive detailed reports on threats detected and actions taken.
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary">Safe Access & Reporting</h3>
-                <p className="text-foreground/70">
-                  Safe content is allowed through while dangerous items are blocked. You receive detailed reports on threats detected and actions taken.
-                </p>
               </div>
             </div>
           </div>
