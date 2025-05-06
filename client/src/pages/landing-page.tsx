@@ -820,13 +820,13 @@ export default function LandingPage() {
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold mb-6 text-center">About ScamBane</h2>
               <p className="text-foreground/70 mb-6">
-                ScamBane is a comprehensive cybersecurity platform designed to protect users from digital threats through advanced scanning technologies. Our mission is to make the internet safer by providing accessible security tools for everyone.
+                ScamBane is a comprehensive cybersecurity platform developed by Matrica Networks Private Limited, dedicated to protecting users from digital threats through advanced scanning and threat detection technologies. Our mission is to make the internet a safer place by offering accessible, intelligent, and user-friendly security tools for individuals and organizations alike.
               </p>
               <p className="text-foreground/70 mb-6">
-                Founded by a team of cybersecurity experts, ScamBane combines multiple threat intelligence sources with artificial intelligence to detect and analyze potential security risks before they can harm you.
+                Founded by a team of seasoned cybersecurity professionals, ScamBane integrates multiple threat intelligence sources with cutting-edge artificial intelligence to proactively detect and analyze potential risks—ranging from phishing and malware to steganography hidden in multimedia content.
               </p>
               <p className="text-foreground/70 mb-6">
-                We believe in transparency, privacy, and user education. That's why our platform not only identifies threats but also explains them, helping users understand and make informed decisions about your digital safety.
+                At ScamBane, we are committed to transparency, privacy, and user empowerment. Our platform doesn't just block threats—it explains them, providing users with clear insights to help them make informed decisions about their digital safety.
               </p>
               <div className="flex justify-center mt-8">
                 <Button 
