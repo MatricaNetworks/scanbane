@@ -60,12 +60,12 @@ const AdminDashboard = () => {
   });
 
   // Format data for charts
-  const resultChartData = resultStats ? resultStats.map((stat: any) => ({
+  const resultChartData = resultStats && Array.isArray(resultStats) ? resultStats.map((stat: any) => ({
     name: stat.result.charAt(0).toUpperCase() + stat.result.slice(1),
     value: stat.count,
   })) : [];
 
-  const threatChartData = threatStats ? threatStats.map((stat: any) => ({
+  const threatChartData = threatStats && Array.isArray(threatStats) ? threatStats.map((stat: any) => ({
     name: stat.threatType,
     value: stat.count,
   })) : [];
@@ -110,7 +110,7 @@ const AdminDashboard = () => {
           ) : (
             <div className="space-y-6">
               {/* Stats Overview Cards */}
-              {userStats && <StatsCards stats={userStats} />}
+              {userStats && typeof userStats === 'object' && 'totalUsers' in userStats && <StatsCards stats={userStats as any} />}
 
               {/* Charts Section */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
