@@ -332,68 +332,139 @@ export default function LandingPage() {
             </div>
             
             <div className="hidden md:flex justify-center mb-12">
-              <div className="relative w-full max-w-2xl aspect-square">
+              <div className="relative w-full max-w-4xl aspect-[4/3]">
                 {/* Triangle Container */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Triangle SVG */}
-                  <svg viewBox="0 0 400 400" className="w-full h-full">
-                    {/* Triangle Outline */}
+                  {/* Triangle SVG with Professional Styling */}
+                  <svg viewBox="0 0 800 600" className="w-full h-full">
+                    {/* Glowing Background */}
+                    <defs>
+                      <radialGradient id="triadGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.05" />
+                        <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+                      </radialGradient>
+                      
+                      {/* Soft glowing effect around paths */}
+                      <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="5" result="blur" />
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+                    
+                    {/* Background glow */}
+                    <circle cx="400" cy="300" r="250" fill="url(#triadGlow)" />
+                    
+                    {/* Outer Triangle with gradient stroke */}
                     <path 
-                      d="M200,20 L350,320 L50,320 Z" 
+                      d="M400,100 L650,450 L150,450 Z" 
                       fill="none" 
-                      stroke="currentColor" 
+                      stroke="url(#gradient-stroke)" 
                       strokeWidth="2" 
-                      className="text-foreground/20"
-                      strokeDasharray="5,5"
+                      className="text-foreground/50"
+                      filter="url(#glow)"
                     />
                     
-                    {/* Connecting Lines */}
-                    <line x1="200" y1="20" x2="200" y2="320" stroke="currentColor" strokeWidth="1" className="text-foreground/10" strokeDasharray="5,5" />
-                    <line x1="50" y1="320" x2="350" y2="320" stroke="currentColor" strokeWidth="1" className="text-foreground/10" strokeDasharray="5,5" />
-                    <line x1="200" y1="20" x2="350" y2="320" stroke="currentColor" strokeWidth="1" className="text-foreground/10" strokeDasharray="5,5" />
-                    <line x1="200" y1="20" x2="50" y2="320" stroke="currentColor" strokeWidth="1" className="text-foreground/10" strokeDasharray="5,5" />
+                    {/* Gradient for stroke */}
+                    <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="var(--color-primary)" />
+                      <stop offset="50%" stopColor="var(--color-secondary)" />
+                      <stop offset="100%" stopColor="#22c55e" />
+                    </linearGradient>
+                    
+                    {/* Inner Triangle with subtle fill */}
+                    <path 
+                      d="M400,110 L640,440 L160,440 Z" 
+                      fill="url(#inner-gradient)" 
+                      fillOpacity="0.03"
+                    />
+                    
+                    {/* Gradient for inner triangle */}
+                    <linearGradient id="inner-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="var(--color-primary)" />
+                      <stop offset="50%" stopColor="var(--color-secondary)" />
+                      <stop offset="100%" stopColor="#22c55e" />
+                    </linearGradient>
+                    
+                    {/* Connection lines with animated dash array */}
+                    <line 
+                      x1="400" y1="110" x2="400" y2="440" 
+                      stroke="currentColor" 
+                      strokeWidth="1" 
+                      strokeDasharray="4,4" 
+                      className="text-foreground/20" 
+                    >
+                      <animate attributeName="stroke-dashoffset" from="0" to="16" dur="30s" repeatCount="indefinite" />
+                    </line>
+                    
+                    <line 
+                      x1="400" y1="110" x2="640" y2="440" 
+                      stroke="currentColor" 
+                      strokeWidth="1" 
+                      strokeDasharray="4,4" 
+                      className="text-foreground/20"
+                    >
+                      <animate attributeName="stroke-dashoffset" from="0" to="16" dur="30s" repeatCount="indefinite" />
+                    </line>
+                    
+                    <line 
+                      x1="400" y1="110" x2="160" y2="440" 
+                      stroke="currentColor" 
+                      strokeWidth="1" 
+                      strokeDasharray="4,4" 
+                      className="text-foreground/20"
+                    >
+                      <animate attributeName="stroke-dashoffset" from="0" to="16" dur="30s" repeatCount="indefinite" />
+                    </line>
+                    
+                    {/* Small connecting dots at corners */}
+                    <circle cx="400" cy="110" r="6" fill="var(--color-primary)" fillOpacity="0.5" />
+                    <circle cx="640" cy="440" r="6" fill="var(--color-secondary)" fillOpacity="0.5" />
+                    <circle cx="160" cy="440" r="6" fill="#22c55e" fillOpacity="0.5" />
                   </svg>
                   
                   {/* Node 1 - Top */}
-                  <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-110">
-                      <div className="rounded-full bg-primary/20 w-20 h-20 flex items-center justify-center mb-2 transition-transform duration-300 hover:scale-110 hover:bg-primary/40 shadow-md border border-primary/20">
-                        <Shield className="h-10 w-10 text-primary transition-all duration-300 group-hover:scale-125" />
+                  <div className="absolute top-16 left-1/2 transform -translate-x-1/2 z-10">
+                    <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
+                      <div className="rounded-full bg-gradient-to-br from-primary/30 to-primary/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-primary/40 hover:to-primary/20 shadow-[0_0_15px_rgba(var(--color-primary-rgb),0.3)] border border-primary/20 backdrop-blur-sm">
+                        <Shield className="h-12 w-12 text-primary transition-all duration-300 group-hover:scale-125 drop-shadow-md" />
                       </div>
-                      <div className="bg-card p-3 rounded-lg shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20 min-w-[160px] text-center">
-                        <h3 className="text-lg font-semibold mb-1 transition-colors duration-300 group-hover:text-primary">Automatic Interception</h3>
-                        <p className="text-foreground/70 text-sm">
-                          All content is intercepted before reaching your device
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20 min-w-[220px] text-center mt-3">
+                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary bg-clip-text">Automatic Interception</h3>
+                        <p className="text-foreground/70">
+                          All content is intercepted before reaching your device for proactive protection
                         </p>
                       </div>
                     </div>
                   </div>
                   
                   {/* Node 2 - Bottom Left */}
-                  <div className="absolute bottom-12 left-12 z-10">
-                    <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-110">
-                      <div className="rounded-full bg-secondary/20 w-20 h-20 flex items-center justify-center mb-2 transition-transform duration-300 hover:scale-110 hover:bg-secondary/40 shadow-md border border-secondary/20">
-                        <ShieldAlert className="h-10 w-10 text-secondary transition-all duration-300 group-hover:scale-125" />
+                  <div className="absolute bottom-16 left-[15%] z-10">
+                    <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
+                      <div className="rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-secondary/40 hover:to-secondary/20 shadow-[0_0_15px_rgba(var(--color-secondary-rgb),0.3)] border border-secondary/20 backdrop-blur-sm">
+                        <ShieldAlert className="h-12 w-12 text-secondary transition-all duration-300 group-hover:scale-125 drop-shadow-md" />
                       </div>
-                      <div className="bg-card p-3 rounded-lg shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-secondary/20 min-w-[160px] text-center">
-                        <h3 className="text-lg font-semibold mb-1 transition-colors duration-300 group-hover:text-secondary">Intelligent Analysis</h3>
-                        <p className="text-foreground/70 text-sm">
-                          Multi-layered detection of all threats including steganography
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-secondary/20 min-w-[220px] text-center mt-3">
+                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-secondary bg-clip-text">Intelligent Analysis</h3>
+                        <p className="text-foreground/70">
+                          Multi-layered detection of all threats including advanced steganography detection
                         </p>
                       </div>
                     </div>
                   </div>
                   
                   {/* Node 3 - Bottom Right */}
-                  <div className="absolute bottom-12 right-12 z-10">
-                    <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-110">
-                      <div className="rounded-full bg-green-500/20 w-20 h-20 flex items-center justify-center mb-2 transition-transform duration-300 hover:scale-110 hover:bg-green-500/40 shadow-md border border-green-500/20">
-                        <ShieldCheck className="h-10 w-10 text-green-500 transition-all duration-300 group-hover:scale-125" />
+                  <div className="absolute bottom-16 right-[15%] z-10">
+                    <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
+                      <div className="rounded-full bg-gradient-to-br from-green-500/30 to-green-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-green-500/40 hover:to-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.3)] border border-green-500/20 backdrop-blur-sm">
+                        <ShieldCheck className="h-12 w-12 text-green-500 transition-all duration-300 group-hover:scale-125 drop-shadow-md" />
                       </div>
-                      <div className="bg-card p-3 rounded-lg shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-green-500/20 min-w-[160px] text-center">
-                        <h3 className="text-lg font-semibold mb-1 transition-colors duration-300 group-hover:text-green-500">Safe Access & Reporting</h3>
-                        <p className="text-foreground/70 text-sm">
-                          Safe content is allowed while threats are blocked with reports
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-green-500/20 min-w-[220px] text-center mt-3">
+                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-green-500 bg-clip-text">Safe Access & Reporting</h3>
+                        <p className="text-foreground/70">
+                          Safe content is allowed through while dangerous items are blocked with detailed reports
                         </p>
                       </div>
                     </div>
@@ -401,8 +472,11 @@ export default function LandingPage() {
                   
                   {/* Center Text */}
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                    <div className="bg-background/80 backdrop-blur-sm rounded-full p-3 shadow-lg border border-border flex items-center justify-center w-24 h-24 transition-all duration-500 hover:scale-110 hover:shadow-xl">
-                      <span className="text-lg font-bold bg-gradient-to-r from-primary via-secondary to-green-500 bg-clip-text text-transparent">ScamBane<br/>Triad</span>
+                    <div className="bg-background/60 backdrop-blur-md rounded-full p-3 shadow-[0_0_20px_rgba(var(--shadow-rgb),0.2)] border border-border/50 flex items-center justify-center w-32 h-32 transition-all duration-500 hover:scale-110 hover:shadow-[0_0_30px_rgba(var(--shadow-rgb),0.3)]">
+                      <div>
+                        <div className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-green-500 bg-clip-text text-transparent text-center">ScamBane</div>
+                        <div className="text-lg font-medium text-foreground/70 text-center">Security Triad</div>
+                      </div>
                     </div>
                   </div>
                 </div>
