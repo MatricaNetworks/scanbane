@@ -5,3 +5,6 @@ export * from './url-analysis-service';
 export * from './file-analysis-service';
 export * from './image-analysis-service';
 export * from './apk-analysis-service';
+
+// Export Python-based services
+export * from './python-services';

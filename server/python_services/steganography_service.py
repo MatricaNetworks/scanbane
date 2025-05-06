@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Steganography Detection Service for ScamBane
-Implements LSB analysis, StegExpose, and OpenStego detection
+Implements advanced LSB analysis, StegExpose, and OpenStego detection
 """
 
 from PIL import Image
@@ -12,6 +12,9 @@ import subprocess
 import json
 import tempfile
 import logging
+
+# Import our advanced LSB detector
+import advanced_lsb_detector
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
