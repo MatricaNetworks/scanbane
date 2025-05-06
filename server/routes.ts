@@ -15,22 +15,27 @@ import {
   urlAnalysisService,
   fileAnalysisService,
   imageAnalysisService,
-  apkAnalysisService
+  apkAnalysisService,
+  mediaSecurityService
 } from "./services";
 
 // Setup file upload
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 25 * 1024 * 1024 }, // 25MB limit
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB limit for media files
   fileFilter: (_req, file, cb) => {
-    // Check file types - expanded to include APK and more formats
+    // Check file types - expanded to include APK, audio, video and more formats
     if (file.mimetype.startsWith('image/') || 
+        file.mimetype.startsWith('audio/') ||
+        file.mimetype.startsWith('video/') ||
         file.mimetype === 'application/pdf' ||
         file.mimetype === 'application/zip' ||
         file.mimetype === 'application/x-msdownload' ||
         file.mimetype === 'application/x-msi' ||
         file.mimetype === 'application/vnd.android.package-archive' ||
         file.mimetype === 'application/octet-stream' ||
+        // Common audio/video extensions
+        file.originalname.match(/\.(mp3|wav|ogg|flac|mp4|mkv|avi|mov|webm|wmv)$/i) ||
         file.originalname.endsWith('.apk')) {
       cb(null, true);
     } else {
@@ -260,6 +265,76 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       log(`Image scan error: ${error}`, 'routes');
       res.status(500).json({ message: "Failed to scan image" });
+    }
+  });
+  
+  // Media scan endpoint (audio/video)
+  app.post("/api/scan/media", checkTrialLimit, upload.single('media'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: "No media file uploaded or invalid file type" });
+      }
+      
+      // Check if file is audio or video
+      const isAudio = req.file.mimetype.startsWith('audio/') || 
+                    req.file.originalname.match(/\.(mp3|wav|ogg|flac|aac)$/i);
+      const isVideo = req.file.mimetype.startsWith('video/') || 
+                    req.file.originalname.match(/\.(mp4|mkv|avi|mov|webm|wmv)$/i);
+      
+      if (!isAudio && !isVideo) {
+        return res.status(400).json({ 
+          message: "Uploaded file is not a supported audio or video format" 
+        });
+      }
+      
+      // Increment user's scan count
+      await storage.updateUserScans(req.user.id);
+      
+      // Analyze the media file for steganography and security threats
+      const analysisResult = await mediaSecurityService.analyzeMedia(
+        req.file.buffer,
+        req.file.originalname,
+        req.file.mimetype
+      );
+      
+      // Map result to expected format
+      const scanResult = {
+        result: analysisResult.isSuspicious ? "suspicious" : "safe",
+        threatType: analysisResult.threatType,
+        mediaType: analysisResult.mediaType,
+        details: {
+          confidence: Math.floor(analysisResult.confidence * 100),
+          detectionTime: new Date().toISOString(),
+          fileType: req.file.mimetype,
+          fileSize: req.file.size,
+          explanation: analysisResult.finalVerdict,
+          recommendations: analysisResult.securityRecommendations || [],
+          scanServices: Object.keys(analysisResult.scanResults).filter(
+            key => analysisResult.scanResults[key] !== null
+          )
+        },
+        scanDetails: analysisResult.scanResults
+      };
+      
+      // Store scan result
+      const newScan = await storage.createScanResult({
+        userId: req.user.id,
+        scanType: isAudio ? "audio" : "video",
+        targetName: req.file.originalname,
+        result: scanResult.result,
+        threatType: scanResult.threatType,
+        details: scanResult.details
+      });
+      
+      res.status(200).json({
+        scanId: newScan.id,
+        ...scanResult,
+        scansUsed: (req.user.scansUsed || 0) + 1,
+        target: req.file.originalname
+      });
+    } catch (error) {
+      log(`Media scan error: ${error}`, 'routes');
+      res.status(500).json({ message: "Failed to scan media file" });
     }
   });
 

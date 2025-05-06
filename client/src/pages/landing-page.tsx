@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
-import { Shield, ShieldCheck, ShieldAlert, Globe, FileText, Image, Smartphone, ArrowRight, Menu, X } from 'lucide-react';
+import { 
+  Shield, ShieldCheck, ShieldAlert, Globe, FileText, Image, 
+  Smartphone, ArrowRight, Menu, X, Music, Video
+} from 'lucide-react';
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -136,7 +139,7 @@ export default function LandingPage() {
                   <span className="block">for the Digital Age</span>
                 </h1>
                 <p className="text-xl text-foreground/70 max-w-md">
-                  Protect yourself from online threats with our comprehensive security platform. Scan URLs, files, and images for malware, phishing, and hidden threats.
+                  Protect yourself from online threats with our comprehensive security platform. Scan URLs, files, images, audio, and video for malware, phishing, and hidden steganography threats.
                 </p>
                 <div className="flex items-center space-x-4 pt-4">
                   <Button size="lg" onClick={() => navigate("/auth")}>
@@ -268,6 +271,26 @@ export default function LandingPage() {
               
               <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4">
+                  <Music className="h-6 w-6 text-secondary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Audio Analysis</h3>
+                <p className="text-foreground/70">
+                  Detect steganography in audio files (MP3, WAV, OGG, FLAC) with advanced frequency domain and LSB analysis.
+                </p>
+              </div>
+              
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-4">
+                  <Video className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Video Scanning</h3>
+                <p className="text-foreground/70">
+                  Analyze video files (MP4, MKV, AVI, MOV) for hidden threats, steganography, and behavioral anomalies.
+                </p>
+              </div>
+              
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="rounded-full bg-secondary/10 w-12 h-12 flex items-center justify-center mb-4">
                   <Shield className="h-6 w-6 text-secondary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">AI-Powered Analysis</h3>
@@ -285,7 +308,7 @@ export default function LandingPage() {
             <div className="text-center max-w-2xl mx-auto mb-16">
               <h2 className="text-3xl font-bold mb-4">How ScamBane Works</h2>
               <p className="text-foreground/70">
-                Our multi-layered approach ensures comprehensive protection against various cyber threats
+                Our multi-layered approach ensures comprehensive protection by automatically intercepting and analyzing all digital content before allowing access
               </p>
             </div>
             
