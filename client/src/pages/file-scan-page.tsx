@@ -14,6 +14,21 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 
+// Android Logo SVG Component for APK scanning
+function AndroidLogo(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="currentColor" 
+      {...props}
+    >
+      <path d="M17.523 15.3414C17.523 16.0156 16.9716 16.5669 16.2974 16.5669H8.40165C7.72744 16.5669 7.17615 16.0156 7.17615 15.3414V8.67116C7.17615 7.99695 7.72744 7.44566 8.40165 7.44566H16.2974C16.9716 7.44566 17.523 7.99695 17.523 8.67116V15.3414Z" />
+      <path d="M6.84995 2.16602C6.08042 2.16602 5.45605 2.79038 5.45605 3.55992V19.6642C5.45605 20.4337 6.08042 21.0581 6.84995 21.0581H18.0447C18.8142 21.0581 19.4386 20.4337 19.4386 19.6642V3.55992C19.4386 2.79038 18.8142 2.16602 18.0447 2.16602H6.84995ZM6.84995 0.772124H18.0447C19.5968 0.772124 20.8325 2.00782 20.8325 3.55992V19.6642C20.8325 21.2163 19.5968 22.452 18.0447 22.452H6.84995C5.29784 22.452 4.06215 21.2163 4.06215 19.6642V3.55992C4.06215 2.00782 5.29784 0.772124 6.84995 0.772124Z" />
+    </svg>
+  );
+}
+
 export default function FileScanPage() {
   // Mock user data for demo
   const user = {
