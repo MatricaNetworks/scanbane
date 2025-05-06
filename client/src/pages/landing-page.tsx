@@ -565,9 +565,6 @@ export default function LandingPage() {
                       <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-primary/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
                         <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-primary bg-clip-text">Automatic Interception</h3>
-                        <p className="text-foreground/70">
-                          All content is intercepted before reaching your device for proactive protection
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -581,9 +578,6 @@ export default function LandingPage() {
                       <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-secondary/20 min-w-[220px] text-center mt-3 relative group-hover:rotate-3">
                         <div className="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-secondary bg-clip-text">Intelligent Analysis</h3>
-                        <p className="text-foreground/70">
-                          Multi-layered detection of all threats including advanced steganography detection
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -597,9 +591,6 @@ export default function LandingPage() {
                       <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-green-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
                         <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-green-500 bg-clip-text">Safe Access & Reporting</h3>
-                        <p className="text-foreground/70">
-                          Safe content is allowed through while dangerous items are blocked with detailed reports
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -651,9 +642,6 @@ export default function LandingPage() {
                     <Shield className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Automatic Interception</h3>
-                  <p className="text-foreground/70">
-                    ScamBane intercepts all content—URLs, images, files, audio, and video—before they reach you, providing proactive protection.
-                  </p>
                 </div>
               </div>
               
@@ -663,9 +651,6 @@ export default function LandingPage() {
                     <ShieldAlert className="h-8 w-8 text-secondary" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Intelligent Analysis</h3>
-                  <p className="text-foreground/70">
-                    Content is analyzed using multi-layered detection including steganography analysis in images, audio, and video files to find hidden threats.
-                  </p>
                 </div>
               </div>
               
@@ -675,9 +660,6 @@ export default function LandingPage() {
                     <ShieldCheck className="h-8 w-8 text-green-500" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Safe Access & Reporting</h3>
-                  <p className="text-foreground/70">
-                    Safe content is allowed through while dangerous items are blocked. You receive detailed reports on threats detected and actions taken.
-                  </p>
                 </div>
               </div>
             </div>
