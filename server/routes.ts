@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import { WebSocketServer } from 'ws';
 import { storage } from "./storage";
 import { setupAuth } from "./auth";
 import { scanResults, urlScanSchema } from "@shared/schema";
@@ -7,117 +8,36 @@ import { eq } from "drizzle-orm";
 import multer from "multer";
 import path from "path";
 import { ZodError } from "zod";
+import { log } from "./vite";
+
+// Import services
+import { 
+  urlAnalysisService,
+  fileAnalysisService,
+  imageAnalysisService,
+  apkAnalysisService
+} from "./services";
 
 // Setup file upload
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
+  limits: { fileSize: 25 * 1024 * 1024 }, // 25MB limit
   fileFilter: (_req, file, cb) => {
-    // Check file types
+    // Check file types - expanded to include APK and more formats
     if (file.mimetype.startsWith('image/') || 
         file.mimetype === 'application/pdf' ||
         file.mimetype === 'application/zip' ||
         file.mimetype === 'application/x-msdownload' ||
-        file.mimetype === 'application/x-msi') {
+        file.mimetype === 'application/x-msi' ||
+        file.mimetype === 'application/vnd.android.package-archive' ||
+        file.mimetype === 'application/octet-stream' ||
+        file.originalname.endsWith('.apk')) {
       cb(null, true);
     } else {
       cb(null, false);
     }
   }
 });
-
-// Mock functions for scanning - in a real implementation these would connect to backend services
-async function scanURL(url: string, userId: number) {
-  // Simulate URL scanning
-  // In a real implementation, this would call an actual scanning service
-  
-  // Generate a random result for demo purposes
-  const isMalicious = Math.random() < 0.3;
-  
-  if (isMalicious) {
-    return {
-      result: "malicious",
-      threatType: Math.random() < 0.5 ? "phishing" : "malware",
-      details: {
-        confidence: Math.floor(Math.random() * 30) + 70,
-        detectionTime: new Date().toISOString()
-      }
-    };
-  } else {
-    return {
-      result: "safe",
-      threatType: null,
-      details: {
-        confidence: Math.floor(Math.random() * 20) + 80,
-        detectionTime: new Date().toISOString()
-      }
-    };
-  }
-}
-
-async function scanFile(file: Express.Multer.File, userId: number) {
-  // Simulate file scanning
-  // In a real implementation, this would call an actual scanning service
-  
-  // Generate a random result for demo purposes
-  const isMalicious = Math.random() < 0.3;
-  
-  if (isMalicious) {
-    return {
-      result: "malicious",
-      threatType: "malware",
-      details: {
-        confidence: Math.floor(Math.random() * 30) + 70,
-        detectionTime: new Date().toISOString(),
-        fileType: file.mimetype,
-        fileSize: file.size
-      }
-    };
-  } else {
-    return {
-      result: "safe",
-      threatType: null,
-      details: {
-        confidence: Math.floor(Math.random() * 20) + 80,
-        detectionTime: new Date().toISOString(),
-        fileType: file.mimetype,
-        fileSize: file.size
-      }
-    };
-  }
-}
-
-async function scanImage(file: Express.Multer.File, userId: number) {
-  // Simulate image scanning for steganography
-  // In a real implementation, this would call an actual scanning service
-  
-  // Generate a random result for demo purposes
-  const isMalicious = Math.random() < 0.3;
-  
-  if (isMalicious) {
-    return {
-      result: "suspicious",
-      threatType: "steganography",
-      details: {
-        confidence: Math.floor(Math.random() * 30) + 70,
-        detectionTime: new Date().toISOString(),
-        imageType: file.mimetype,
-        imageSize: file.size
-      }
-    };
-  } else {
-    return {
-      result: "safe",
-      threatType: null,
-      details: {
-        confidence: Math.floor(Math.random() * 20) + 80,
-        detectionTime: new Date().toISOString(),
-        imageType: file.mimetype,
-        imageSize: file.size
-      }
-    };
-  }
-}
 
 // Check if user has scans available
 async function checkTrialLimit(req: any, res: any, next: any) {
@@ -157,8 +77,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Increment user's scan count
       await storage.updateUserScans(req.user.id);
       
-      // Scan the URL
-      const scanResult = await scanURL(url, req.user.id);
+      // Scan the URL with comprehensive analysis
+      const analysisResult = await urlAnalysisService.analyzeUrl(url);
+      
+      // Map result to expected format
+      const scanResult = {
+        result: analysisResult.isMalicious ? "malicious" : "safe",
+        threatType: analysisResult.threatType,
+        details: {
+          confidence: Math.floor(analysisResult.confidence * 100),
+          detectionTime: new Date().toISOString(),
+          explanation: analysisResult.finalVerdict,
+          scanServices: Object.keys(analysisResult.scanResults).filter(
+            key => analysisResult.scanResults[key] !== null
+          )
+        },
+        scanDetails: analysisResult.scanResults
+      };
       
       // Store scan result
       const newScan = await storage.createScanResult({
@@ -177,6 +112,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         target: url
       });
     } catch (error) {
+      log(`URL scan error: ${error}`, 'routes');
       if (error instanceof ZodError) {
         return res.status(400).json({ 
           message: "Invalid URL format",
@@ -197,13 +133,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Increment user's scan count
       await storage.updateUserScans(req.user.id);
       
-      // Scan the file
-      const scanResult = await scanFile(req.file, req.user.id);
+      // Check if file is APK
+      const isApk = req.file.originalname.toLowerCase().endsWith('.apk') || 
+                    req.file.mimetype === 'application/vnd.android.package-archive';
+      
+      // Perform appropriate analysis
+      let analysisResult;
+      if (isApk) {
+        log(`Processing APK file: ${req.file.originalname}`, 'routes');
+        analysisResult = await apkAnalysisService.analyzeApk(
+          req.file.buffer, 
+          req.file.originalname
+        );
+      } else {
+        log(`Processing generic file: ${req.file.originalname}`, 'routes');
+        analysisResult = await fileAnalysisService.analyzeFile(
+          req.file.buffer, 
+          req.file.originalname, 
+          req.file.mimetype
+        );
+      }
+      
+      // Map result to expected format
+      const scanResult = {
+        result: analysisResult.isMalicious ? "malicious" : "safe",
+        threatType: analysisResult.threatType,
+        details: {
+          confidence: Math.floor(analysisResult.confidence * 100),
+          detectionTime: new Date().toISOString(),
+          fileType: req.file.mimetype,
+          fileSize: req.file.size,
+          explanation: analysisResult.finalVerdict,
+          isApk,
+          scanServices: Object.keys(analysisResult.scanResults).filter(
+            key => analysisResult.scanResults[key] !== null
+          )
+        },
+        scanDetails: analysisResult.scanResults
+      };
       
       // Store scan result
       const newScan = await storage.createScanResult({
         userId: req.user.id,
-        scanType: "file",
+        scanType: isApk ? "apk" : "file",
         targetName: req.file.originalname,
         result: scanResult.result,
         threatType: scanResult.threatType,
@@ -217,6 +189,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         target: req.file.originalname
       });
     } catch (error) {
+      log(`File scan error: ${error}`, 'routes');
       res.status(500).json({ message: "Failed to scan file" });
     }
   });
@@ -231,8 +204,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Increment user's scan count
       await storage.updateUserScans(req.user.id);
       
-      // Scan the image
-      const scanResult = await scanImage(req.file, req.user.id);
+      // Scan the image with steganography detection
+      const analysisResult = await imageAnalysisService.analyzeImage(
+        req.file.buffer, 
+        req.file.originalname
+      );
+      
+      // Map result to expected format
+      const scanResult = {
+        result: analysisResult.isSuspicious ? "suspicious" : "safe",
+        threatType: analysisResult.threatType,
+        details: {
+          confidence: Math.floor(analysisResult.confidence * 100),
+          detectionTime: new Date().toISOString(),
+          imageType: req.file.mimetype,
+          imageSize: req.file.size,
+          explanation: analysisResult.finalVerdict,
+          hasSteganography: analysisResult.scanResults.steganography?.hasSteganography || false,
+          scanServices: Object.keys(analysisResult.scanResults).filter(
+            key => analysisResult.scanResults[key] !== null
+          )
+        },
+        scanDetails: analysisResult.scanResults
+      };
       
       // Store scan result
       const newScan = await storage.createScanResult({
@@ -251,6 +245,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         target: req.file.originalname
       });
     } catch (error) {
+      log(`Image scan error: ${error}`, 'routes');
       res.status(500).json({ message: "Failed to scan image" });
     }
   });
@@ -267,6 +262,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.status(200).json(scanHistory);
     } catch (error) {
+      log(`Scan history error: ${error}`, 'routes');
       res.status(500).json({ message: "Failed to fetch scan history" });
     }
   });
@@ -293,11 +289,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.status(201).json({ licenseKey, tier, maxActivations });
     } catch (error) {
+      log(`License generation error: ${error}`, 'routes');
       res.status(500).json({ message: "Failed to generate license key" });
     }
   });
 
+  // Create HTTP server
   const httpServer = createServer(app);
+  
+  // Add WebSocket server for real-time scan notifications
+  const wss = new WebSocketServer({ server: httpServer, path: '/ws' });
+  
+  wss.on('connection', (ws) => {
+    log('WebSocket client connected', 'websocket');
+    
+    ws.on('message', (message) => {
+      try {
+        const data = JSON.parse(message.toString());
+        
+        // Handle client messages
+        if (data.type === 'ping') {
+          ws.send(JSON.stringify({ type: 'pong', timestamp: Date.now() }));
+        }
+      } catch (error) {
+        log(`WebSocket error: ${error}`, 'websocket');
+      }
+    });
+    
+    ws.on('close', () => {
+      log('WebSocket client disconnected', 'websocket');
+    });
+    
+    // Send welcome message
+    ws.send(JSON.stringify({ 
+      type: 'info', 
+      message: 'Connected to ScamBane real-time notification service',
+      timestamp: Date.now()
+    }));
+  });
+  
+  // Function to broadcast scan result to all connected clients
+  // This will be used by the scan endpoints to notify clients
+  (global as any).broadcastScanResult = (scanResult: any) => {
+    const message = JSON.stringify({
+      type: 'scan_result',
+      data: scanResult,
+      timestamp: Date.now()
+    });
+    
+    wss.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(message);
+      }
+    });
+  };
 
   return httpServer;
 }
