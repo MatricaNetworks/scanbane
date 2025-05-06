@@ -35,7 +35,7 @@ export function Sidebar() {
   };
 
   const navLinks = [
-    { name: "Dashboard", path: "/", icon: <Home className="h-5 w-5" /> },
+    { name: "Dashboard", path: "/dashboard", icon: <Home className="h-5 w-5" /> },
     { name: "URL Scan", path: "/url-scan", icon: <LinkIcon className="h-5 w-5" /> },
     { name: "File Scan", path: "/file-scan", icon: <File className="h-5 w-5" /> },
     { name: "Image Scan", path: "/image-scan", icon: <ImageIcon className="h-5 w-5" /> },
@@ -51,7 +51,7 @@ export function Sidebar() {
   return (
     <div className="flex flex-col w-64 bg-[#111827] text-white">
       <div className="flex items-center justify-center h-16 px-4 border-b border-gray-700">
-        <Link href="/">
+        <Link href="/dashboard">
           <a className="flex items-center">
             <ShieldCheck className="h-6 w-6 text-blue-500 mr-2" />
             <span className="text-xl font-semibold">ScamBane</span>

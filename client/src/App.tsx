@@ -7,12 +7,16 @@ import FileScanPage from "@/pages/file-scan-page";
 import ImageScanPage from "@/pages/image-scan-page";
 import HistoryPage from "@/pages/history-page";
 import DownloadPage from "@/pages/download-page";
+import LandingPage from "@/pages/landing-page";
 import { ProtectedRoute } from "./lib/protected-route";
+import { ThemeProvider } from "./lib/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 function Router() {
   return (
     <Switch>
-      <ProtectedRoute path="/" component={HomePage} />
+      <Route path="/" component={LandingPage} />
+      <ProtectedRoute path="/dashboard" component={HomePage} />
       <Route path="/auth" component={AuthPage} />
       <ProtectedRoute path="/url-scan" component={UrlScanPage} />
       <ProtectedRoute path="/file-scan" component={FileScanPage} />
@@ -25,7 +29,12 @@ function Router() {
 }
 
 function App() {
-  return <Router />;
+  return (
+    <ThemeProvider defaultTheme="light">
+      <Router />
+      <Toaster />
+    </ThemeProvider>
+  );
 }
 
 export default App;
