@@ -171,8 +171,8 @@ const ThreatTable = () => {
     queryKey: ['/api/admin/scans', page, resultFilter, threatTypeFilter, searchQuery],
     queryFn: async () => {
       const queryParams = new URLSearchParams();
-      queryParams.append('page', page.toString());
-      queryParams.append('pageSize', pageSize.toString());
+      queryParams.append('limit', pageSize.toString());
+      queryParams.append('offset', ((page - 1) * pageSize).toString());
       
       if (resultFilter !== 'all') {
         queryParams.append('result', resultFilter);
@@ -190,7 +190,12 @@ const ThreatTable = () => {
       if (!response.ok) {
         throw new Error('Failed to fetch scan results');
       }
-      return response.json();
+      const responseData = await response.json();
+      return {
+        items: responseData.scans,
+        totalItems: responseData.pagination.total,
+        totalPages: Math.ceil(responseData.pagination.total / pageSize)
+      };
     },
   });
 
