@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Loader2 } from "lucide-react";
 import { 
   Tabs, 
   TabsContent, 
@@ -28,23 +28,34 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useAuth } from "@/hooks/use-auth";
+import { insertUserSchema } from "@shared/schema";
 
+// Login schema only needs username and password
 const loginSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-const registerSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-  phoneNumber: z.string().min(10, "Phone number must be at least 10 digits"),
+// Use the insert user schema for registration but extend it with additional fields
+const registerSchema = insertUserSchema.extend({
+  role: z.string().default("user"),
+  subscriptionTier: z.string().default("free"),
+  isActive: z.boolean().default(true),
+  scansUsed: z.number().default(0),
 });
 
 export default function AuthPage() {
   const [_, navigate] = useLocation();
   const [activeTab, setActiveTab] = useState<string>("login");
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [isRegistering, setIsRegistering] = useState(false);
+  const { user, loginMutation, registerMutation } = useAuth();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
 
   // Login form
   const loginForm = useForm<z.infer<typeof loginSchema>>({
@@ -62,34 +73,19 @@ export default function AuthPage() {
       username: "",
       password: "",
       phoneNumber: "",
+      role: "user",
+      subscriptionTier: "free",
+      isActive: true,
+      scansUsed: 0,
     },
   });
 
   const onLoginSubmit = (data: z.infer<typeof loginSchema>) => {
-    setIsLoggingIn(true);
-    console.log("Login attempted with:", data);
-    
-    // Demo login (username: demo, password: demo123)
-    setTimeout(() => {
-      if (data.username === "demo" && data.password === "demo123") {
-        navigate("/");
-      } else {
-        alert("Invalid credentials. Try using demo/demo123");
-        setIsLoggingIn(false);
-      }
-    }, 1500);
+    loginMutation.mutate(data);
   };
 
   const onRegisterSubmit = (data: z.infer<typeof registerSchema>) => {
-    setIsRegistering(true);
-    console.log("Registration attempted with:", data);
-    
-    // Simulate registration
-    setTimeout(() => {
-      alert("Registration functionality is under development. Please use the demo account: demo/demo123");
-      setIsRegistering(false);
-      setActiveTab("login");
-    }, 1500);
+    registerMutation.mutate(data);
   };
 
   return (
@@ -157,9 +153,13 @@ export default function AuthPage() {
                       <Button 
                         type="submit" 
                         className="w-full"
-                        disabled={isLoggingIn}
+                        disabled={loginMutation.isPending}
                       >
-                        {isLoggingIn ? "Logging in..." : "Login"}
+                        {loginMutation.isPending ? (
+                          <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Logging in...</>
+                        ) : (
+                          "Login"
+                        )}
                       </Button>
                     </form>
                   </Form>
@@ -229,9 +229,13 @@ export default function AuthPage() {
                       <Button 
                         type="submit" 
                         className="w-full"
-                        disabled={isRegistering}
+                        disabled={registerMutation.isPending}
                       >
-                        {isRegistering ? "Registering..." : "Register"}
+                        {registerMutation.isPending ? (
+                          <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Registering...</>
+                        ) : (
+                          "Register"
+                        )}
                       </Button>
                     </form>
                   </Form>
