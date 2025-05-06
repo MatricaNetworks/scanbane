@@ -557,40 +557,43 @@ export default function LandingPage() {
                   </svg>
                   
                   {/* Node 1 - Top of Triangle */}
-                  <div className="absolute top-[15%] left-1/2 transform -translate-x-1/2 z-10">
+                  <div className="absolute top-[5%] left-1/2 transform -translate-x-1/2 z-10">
                     <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
                       <div className="rounded-full bg-gradient-to-br from-red-500/30 to-red-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-red-500/40 hover:to-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.3)] border border-red-500/20 backdrop-blur-sm hover:rotate-12">
                         <Shield className="h-12 w-12 text-red-500 dark:text-red-400 transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
                       </div>
-                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-red-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
-                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-red-500 dark:group-hover:text-red-400 bg-clip-text">Automatic Interception</h3>
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-red-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3 opacity-0 group-hover:opacity-100 absolute top-full left-1/2 transform -translate-x-1/2 z-20">
+                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-red-500/20"></div>
+                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 text-red-500 dark:text-red-400 bg-clip-text">Automatic Interception</h3>
+                        <p className="text-sm text-foreground/70">Stops threats before they reach you</p>
                       </div>
                     </div>
                   </div>
                   
                   {/* Node 2 - Bottom Left Corner of Triangle */}
-                  <div className="absolute bottom-[15%] left-[15%] z-10">
+                  <div className="absolute bottom-[10%] left-[5%] z-10">
                     <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
-                      <div className="rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-secondary/40 hover:to-secondary/20 shadow-[0_0_15px_rgba(var(--color-secondary-rgb),0.3)] border border-secondary/20 backdrop-blur-sm hover:rotate-12">
-                        <ShieldAlert className="h-12 w-12 text-secondary transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
+                      <div className="rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-secondary/40 hover:to-secondary/20 shadow-[0_0_15px_rgba(var(--color-secondary-rgb),0.3)] border border-secondary/20 backdrop-blur-sm hover:rotate-12 dark:from-green-500/30 dark:to-green-500/10 dark:hover:from-green-500/40 dark:hover:to-green-500/20 dark:shadow-[0_0_15px_rgba(34,197,94,0.3)] dark:border-green-500/20">
+                        <ShieldAlert className="h-12 w-12 text-secondary dark:text-green-500 transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
                       </div>
-                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-secondary/20 min-w-[220px] text-center mt-3 relative group-hover:rotate-3">
-                        <div className="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-secondary bg-clip-text">Intelligent Analysis</h3>
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-secondary/20 dark:group-hover:border-green-500/20 min-w-[220px] text-center mt-3 relative group-hover:rotate-3 opacity-0 group-hover:opacity-100 absolute top-0 left-full z-20">
+                        <div className="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-secondary/20 dark:bg-green-500/20"></div>
+                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 text-secondary dark:text-green-500 bg-clip-text">Intelligent Analysis</h3>
+                        <p className="text-sm text-foreground/70">Advanced AI threat detection</p>
                       </div>
                     </div>
                   </div>
                   
                   {/* Node 3 - Bottom Right Corner of Triangle */}
-                  <div className="absolute bottom-[15%] right-[15%] z-10">
+                  <div className="absolute bottom-[10%] right-[5%] z-10">
                     <div className="flex flex-col items-center group cursor-pointer transform transition-all duration-300 hover:scale-105">
                       <div className="rounded-full bg-gradient-to-br from-blue-500/30 to-blue-500/10 w-24 h-24 flex items-center justify-center mb-2 transition-all duration-300 hover:scale-110 hover:from-blue-500/40 hover:to-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.3)] border border-blue-500/20 backdrop-blur-sm hover:-rotate-12">
                         <ShieldCheck className="h-12 w-12 text-blue-500 dark:text-blue-400 transition-all duration-300 group-hover:scale-125 drop-shadow-md animate-pulse" />
                       </div>
-                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-blue-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3">
-                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 group-hover:text-blue-500 dark:group-hover:text-blue-400 bg-clip-text">Safe Access & Reporting</h3>
+                      <div className="bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-border transition-all duration-300 group-hover:shadow-xl group-hover:border-blue-500/20 min-w-[220px] text-center mt-3 relative group-hover:-rotate-3 opacity-0 group-hover:opacity-100 absolute top-0 right-full z-20">
+                        <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-blue-500/20"></div>
+                        <h3 className="text-xl font-semibold mb-2 transition-colors duration-300 text-blue-500 dark:text-blue-400 bg-clip-text">Safe Access & Reporting</h3>
+                        <p className="text-sm text-foreground/70">Secure content delivery with detailed insights</p>
                       </div>
                     </div>
                   </div>
@@ -638,28 +641,31 @@ export default function LandingPage() {
             <div className="md:hidden space-y-8 mt-8">
               <div className="bg-card border border-border p-6 rounded-xl shadow-sm transform transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98">
                 <div className="flex flex-col items-center text-center">
-                  <div className="rounded-full bg-red-500/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-red-500/40">
+                  <div className="rounded-full bg-gradient-to-br from-red-500/30 to-red-500/10 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-red-500/40 shadow-[0_0_10px_rgba(239,68,68,0.2)]">
                     <Shield className="h-8 w-8 text-red-500 dark:text-red-400" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Automatic Interception</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-red-500 dark:text-red-400">Automatic Interception</h3>
+                  <p className="text-sm text-foreground/70">Stops threats before they reach you</p>
                 </div>
               </div>
               
               <div className="bg-card border border-border p-6 rounded-xl shadow-sm transform transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98">
                 <div className="flex flex-col items-center text-center">
-                  <div className="rounded-full bg-secondary/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-secondary/40">
-                    <ShieldAlert className="h-8 w-8 text-secondary" />
+                  <div className="rounded-full bg-gradient-to-br from-secondary/30 to-secondary/10 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-secondary/40 shadow-[0_0_10px_rgba(var(--color-secondary-rgb),0.2)] dark:from-green-500/30 dark:to-green-500/10 dark:shadow-[0_0_10px_rgba(34,197,94,0.2)]">
+                    <ShieldAlert className="h-8 w-8 text-secondary dark:text-green-500" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Intelligent Analysis</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-secondary dark:text-green-500">Intelligent Analysis</h3>
+                  <p className="text-sm text-foreground/70">Advanced AI threat detection</p>
                 </div>
               </div>
               
               <div className="bg-card border border-border p-6 rounded-xl shadow-sm transform transition-all duration-300 hover:scale-102 hover:shadow-md active:scale-98">
                 <div className="flex flex-col items-center text-center">
-                  <div className="rounded-full bg-blue-500/20 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-blue-500/40">
+                  <div className="rounded-full bg-gradient-to-br from-blue-500/30 to-blue-500/10 w-16 h-16 flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110 hover:bg-blue-500/40 shadow-[0_0_10px_rgba(59,130,246,0.2)]">
                     <ShieldCheck className="h-8 w-8 text-blue-500 dark:text-blue-400" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Safe Access & Reporting</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-blue-500 dark:text-blue-400">Safe Access & Reporting</h3>
+                  <p className="text-sm text-foreground/70">Secure content delivery with detailed insights</p>
                 </div>
               </div>
             </div>
@@ -844,16 +850,16 @@ export default function LandingPage() {
               {/* Android Card */}
               <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-green-500/30 group">
                 <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Smartphone className="h-8 w-8 text-green-500" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500/30 to-green-600/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                    <Smartphone className="h-8 w-8 text-green-500 dark:text-green-400" />
                   </div>
-                  <h3 className="text-xl font-semibold">Android</h3>
+                  <h3 className="text-xl font-semibold text-green-600 dark:text-green-400">Android</h3>
                   <p className="text-sm text-foreground/70 mt-2">
                     Download from Google Play Store
                   </p>
                 </div>
                 <Button 
-                  className="w-full bg-green-500 hover:bg-green-600 transition-colors duration-300" 
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all duration-300" 
                   onClick={() => window.open('https://play.google.com/store/apps/details?id=com.scambane.app', '_blank')}
                 >
                   <Download className="h-5 w-5 mr-2" /> Download
@@ -861,18 +867,18 @@ export default function LandingPage() {
               </div>
               
               {/* iOS Card */}
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-blue-500/30 group">
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-red-500/30 group">
                 <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Apple className="h-8 w-8 text-blue-500" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-red-500/30 to-red-600/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                    <Apple className="h-8 w-8 text-red-500 dark:text-red-400" />
                   </div>
-                  <h3 className="text-xl font-semibold">iOS</h3>
+                  <h3 className="text-xl font-semibold text-red-600 dark:text-red-400">iOS</h3>
                   <p className="text-sm text-foreground/70 mt-2">
                     Download from Apple App Store
                   </p>
                 </div>
                 <Button 
-                  className="w-full bg-blue-500 hover:bg-blue-600 transition-colors duration-300" 
+                  className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 transition-all duration-300" 
                   onClick={() => window.open('https://apps.apple.com/app/scambane/id12345678', '_blank')}
                 >
                   <Download className="h-5 w-5 mr-2" /> Download
@@ -880,18 +886,18 @@ export default function LandingPage() {
               </div>
               
               {/* Windows Card */}
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/30 group">
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-blue-500/30 group">
                 <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Laptop className="h-8 w-8 text-primary" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/30 to-blue-600/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                    <Laptop className="h-8 w-8 text-blue-500 dark:text-blue-400" />
                   </div>
-                  <h3 className="text-xl font-semibold">Windows</h3>
+                  <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400">Windows</h3>
                   <p className="text-sm text-foreground/70 mt-2">
                     Download .exe installer
                   </p>
                 </div>
                 <Button 
-                  className="w-full bg-primary hover:bg-primary/90 transition-colors duration-300" 
+                  className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-300" 
                   onClick={() => window.open('/downloads/scambane-setup.exe', '_blank')}
                 >
                   <Download className="h-5 w-5 mr-2" /> Download
@@ -899,18 +905,18 @@ export default function LandingPage() {
               </div>
               
               {/* macOS Card */}
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-secondary/30 group">
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-yellow-500/30 group">
                 <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Apple className="h-8 w-8 text-secondary" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-yellow-500/30 to-yellow-600/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(234,179,8,0.2)]">
+                    <Apple className="h-8 w-8 text-yellow-500 dark:text-yellow-400" />
                   </div>
-                  <h3 className="text-xl font-semibold">macOS</h3>
+                  <h3 className="text-xl font-semibold text-yellow-600 dark:text-yellow-400">macOS</h3>
                   <p className="text-sm text-foreground/70 mt-2">
                     Download .dmg installer
                   </p>
                 </div>
                 <Button 
-                  className="w-full bg-secondary hover:bg-secondary/90 transition-colors duration-300" 
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300" 
                   onClick={() => window.open('/downloads/scambane-installer.dmg', '_blank')}
                 >
                   <Download className="h-5 w-5 mr-2" /> Download
