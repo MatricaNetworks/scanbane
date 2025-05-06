@@ -42,7 +42,7 @@ const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 const MainTab = createBottomTabNavigator<MainTabParamList>();
 const ScanStack = createNativeStackNavigator<ScanStackParamList>();
 
-// Auth navigator
+// Auth navigator - Start with phone login for mobile devices
 const AuthNavigator = () => (
   <AuthStack.Navigator 
     screenOptions={{ 
@@ -50,9 +50,9 @@ const AuthNavigator = () => (
       contentStyle: { backgroundColor: colors.background },
     }}
   >
+    <AuthStack.Screen name="PhoneLogin" component={PhoneLoginScreen} />
     <AuthStack.Screen name="Login" component={LoginScreen} />
     <AuthStack.Screen name="Register" component={RegisterScreen} />
-    <AuthStack.Screen name="PhoneLogin" component={PhoneLoginScreen} />
   </AuthStack.Navigator>
 );
 
